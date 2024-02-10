@@ -55,4 +55,18 @@ describe("single word frequency", () => {
     const count = singleWordFrequency(fullSentence, wordToCount);
     expect(count).toBe(2);
   });
+
+  test("single full stop doesn't affect the count", () => {
+    const wordToCount = "who";
+    const fullSentence = "Who the who.";
+    const count = singleWordFrequency(fullSentence, wordToCount);
+    expect(count).toBe(2);
+  });
+
+  test("multiple full stops don't affect the count", () => {
+    const wordToCount = "who";
+    const fullSentence = "Who the who..";
+    const count = singleWordFrequency(fullSentence, wordToCount);
+    expect(count).toBe(2);
+  });
 });

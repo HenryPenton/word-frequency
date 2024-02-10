@@ -5,7 +5,9 @@ export const singleWordFrequency = (
   const lowerCaseSearch = wordToCount.toLowerCase();
   const noQuestionMarks = fullSentence.replace(/\?/g, "");
   const noExclamationMarks = noQuestionMarks.replace(/!/g, "");
-  const sentenceComponents = noExclamationMarks.split(" ");
+  const noFullStops = noExclamationMarks.replace(/\./g, "");
+
+  const sentenceComponents = noFullStops.split(" ");
   const totalOccurrences = sentenceComponents.filter(
     (component) => component.toLowerCase() === lowerCaseSearch
   );
