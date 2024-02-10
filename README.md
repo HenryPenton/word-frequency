@@ -1,5 +1,7 @@
 # README
 
+A typescript word frequency counter with 0 dependencies, built with test driven development.
+
 ```javascript
 import { singleWordCount, allWordCount } from "word-frequency-counter";
 
