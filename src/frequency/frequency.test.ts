@@ -13,4 +13,19 @@ describe("single word frequency", () => {
         const count = singleWordFrequency(fullSentence, wordToCount);
         expect(count).toBe(2);
       });
+
+      test('counts the word regardless of its case',()=>{
+        const wordToCount = "Who";
+        const fullSentence = "who the who";
+        const count = singleWordFrequency(fullSentence, wordToCount);
+        expect(count).toBe(2);
+      })
+
+      test('counts the occurrences regardless of sentence case',()=>{
+        const wordToCount = "who";
+        const fullSentence = "Who the who";
+        const count = singleWordFrequency(fullSentence, wordToCount);
+        expect(count).toBe(2);
+      })
 });
+
