@@ -1,7 +1,4 @@
-export const singleWordFrequency = (
-  fullSentence: string,
-  wordToCount: string
-) => {
+export const singleWordCount = (fullSentence: string, wordToCount: string) => {
   const lowerCaseSearch = wordToCount.toLowerCase();
   const noQuestionMarks = fullSentence.replace(/\?/g, "");
   const noExclamationMarks = noQuestionMarks.replace(/!/g, "");

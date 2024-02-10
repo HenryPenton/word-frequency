@@ -1,1 +1,1 @@
-export { singleWordFrequency as hold } from "./frequency/frequency";
+export { singleWordCount as hold } from "./frequency/frequency";
