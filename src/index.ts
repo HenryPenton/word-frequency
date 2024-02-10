@@ -1,1 +1,1 @@
-export { singleWordCount as hold } from "./wordCount/wordCount";
+export * from "./wordCount/wordCount";
