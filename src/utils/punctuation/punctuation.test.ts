@@ -1,41 +1,41 @@
 import { punctuationRemover } from "./punctuation";
 
 describe("punctuation", () => {
-  test("single question marks removed", () => {
+  test("single question marks removed from the sentence", () => {
     const fullSentence = "Who the who?";
     const noPunctuationSentence = punctuationRemover(fullSentence);
     expect(noPunctuationSentence).toBe("who the who");
   });
 
-  test("multiple question marks removed", () => {
+  test("multiple question marks removed from the sentence", () => {
     const fullSentence = "Who the who??";
     const noPunctuationSentence = punctuationRemover(fullSentence);
 
     expect(noPunctuationSentence).toBe("who the who");
   });
 
-  test("single exclamation marks are removed", () => {
+  test("single exclamation marks are removed from the sentence", () => {
     const fullSentence = "Who the who!";
     const noPunctuationSentence = punctuationRemover(fullSentence);
 
     expect(noPunctuationSentence).toBe("who the who");
   });
 
-  test("multiple exclamation marks don't affect the count", () => {
+  test("multiple exclamation marks removed from the sentence", () => {
     const fullSentence = "Who the who!!";
     const noPunctuationSentence = punctuationRemover(fullSentence);
 
     expect(noPunctuationSentence).toBe("who the who");
   });
 
-  test("single full stop doesn't affect the count", () => {
+  test("single full stop removed from the sentence", () => {
     const fullSentence = "Who the who.";
     const noPunctuationSentence = punctuationRemover(fullSentence);
 
     expect(noPunctuationSentence).toBe("who the who");
   });
 
-  test("multiple full stops don't affect the count", () => {
+  test("multiple full stops removed from the sentence", () => {
     const fullSentence = "Who the who..";
     const noPunctuationSentence = punctuationRemover(fullSentence);
 
@@ -49,7 +49,7 @@ describe("punctuation", () => {
     expect(noPunctuationSentence).toBe("who the who");
   });
 
-  test("capitals are removed", () => {
+  test("capitals are removed from the sentence", () => {
     const fullSentence = "Who the who";
     const noPunctuationSentence = punctuationRemover(fullSentence);
 

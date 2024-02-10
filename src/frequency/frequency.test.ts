@@ -1,7 +1,6 @@
-import { singleFrequencyCount } from "./frequency";
-import * as WordCount from "../wordCount/wordCount";
+import { allFrequencyCount, singleFrequencyCount } from "./frequency";
 
-describe.skip("frequencies", () => {
+describe("frequencies", () => {
   describe("single frequency", () => {
     test("a single word sentence returns 100% frequency for that word", () => {
       const sentence = "why?";
@@ -29,7 +28,7 @@ describe.skip("frequencies", () => {
   });
 
   describe("multi frequency", () => {
-    test.only("a single word sentence returns a map with one word frequency of 100%", () => {
+    test("a single word sentence returns a map with one word frequency of 100%", () => {
       const sentence = "why?";
       const frequencyMap = allFrequencyCount(sentence);
 
@@ -38,7 +37,7 @@ describe.skip("frequencies", () => {
       expect(frequencyMap).toEqual(expectedFrequencyMap);
     });
 
-    test.only("a two word sentence returns 50% frequency for each of the words in a map (the words are different)", () => {
+    test("a two word sentence returns 50% frequency for each of the words in a map (the words are different)", () => {
       const sentence = "why not?";
       const frequencyMap = allFrequencyCount(sentence);
 
@@ -49,26 +48,16 @@ describe.skip("frequencies", () => {
       expect(frequencyMap).toEqual(expectedFrequencyMap);
     });
 
-    test("percentages are limited to four decimal places", () => {
+    test("a three word sentence returns 33.33% frequency for each of the words in a map (the words are different)", () => {
       const sentence = "why not me?";
+      const frequencyMap = allFrequencyCount(sentence);
 
-      const frequency = singleFrequencyCount(sentence, "why");
+      const expectedFrequencyMap = new Map<string, number>()
+        .set("why", 0.3333)
+        .set("not", 0.3333)
+        .set("me", 0.3333);
 
-      expect(frequency).toEqual(0.3333);
+      expect(frequencyMap).toEqual(expectedFrequencyMap);
     });
   });
 });
-
-function allFrequencyCount(sentence: string) {
-  const sentenceComponents = WordCount.getSentenceComponents(sentence);
-
-  const frequencyMap = new Map<string, number>();
-  sentenceComponents.forEach((key) => {
-    const single = singleFrequencyCount(sentence, key);
-    if (single) {
-      frequencyMap.set(key, single);
-    }
-  });
-
-  return frequencyMap;
-}

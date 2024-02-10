@@ -1,6 +1,5 @@
-import { punctuationRemover } from "../utils/punctuationRemover/punctuation";
-
-export const getSentenceComponents = (text: string) => text.split(" ");
+import { punctuationRemover } from "../utils/punctuation/punctuation";
+import { getSentenceComponents } from "../utils/sentenceComponents/sentenceComponents";
 
 /**
  * Count instances of a given word in a sentence.
@@ -10,9 +9,8 @@ export const getSentenceComponents = (text: string) => text.split(" ");
  */
 export const singleWordCount = (fullSentence: string, wordToCount: string) => {
   const punctuationRemovedSearch = punctuationRemover(wordToCount);
-  const punctuationRemovedText = punctuationRemover(fullSentence);
 
-  const sentenceComponents = getSentenceComponents(punctuationRemovedText);
+  const sentenceComponents = getSentenceComponents(fullSentence);
   const totalOccurrences = sentenceComponents.filter(
     (word) => word === punctuationRemovedSearch
   );
