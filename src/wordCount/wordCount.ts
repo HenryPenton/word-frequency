@@ -10,12 +10,13 @@ export const singleWordCount = (fullSentence: string, wordToCount: string) => {
   const lowerCaseSearch = wordToCount.toLowerCase();
   const punctuationRemovedSearch = punctuationRemover(lowerCaseSearch);
 
-  const punctuationRemovedText = punctuationRemover(fullSentence);
+  const lowerCaseSentence = fullSentence.toLowerCase();
+  const punctuationRemovedText = punctuationRemover(lowerCaseSentence);
 
   const sentenceComponents = getSentenceComponents(punctuationRemovedText);
 
   const totalOccurrences = sentenceComponents.filter(
-    (component) => component.toLowerCase() === punctuationRemovedSearch
+    (component) => component === punctuationRemovedSearch
   );
 
   return totalOccurrences.length;
