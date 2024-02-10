@@ -5,7 +5,7 @@ export const singleWordCount = (fullSentence: string, wordToCount: string) => {
   const noFullStops = noExclamationMarks.replace(/\./g, "");
 
   const sentenceComponents = noFullStops.split(" ");
-  console.log(sentenceComponents);
+
   const totalOccurrences = sentenceComponents.filter(
     (component) => component.toLowerCase() === lowerCaseSearch
   );
