@@ -69,4 +69,11 @@ describe("single word frequency", () => {
     const count = singleWordFrequency(fullSentence, wordToCount);
     expect(count).toBe(2);
   });
+
+  test("multi spaces don't affect the count", () => {
+    const wordToCount = "who";
+    const fullSentence = "Who    would  do something  like     that";
+    const count = singleWordFrequency(fullSentence, wordToCount);
+    expect(count).toBe(1);
+  });
 });

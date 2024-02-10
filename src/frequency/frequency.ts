@@ -8,6 +8,7 @@ export const singleWordFrequency = (
   const noFullStops = noExclamationMarks.replace(/\./g, "");
 
   const sentenceComponents = noFullStops.split(" ");
+  console.log(sentenceComponents);
   const totalOccurrences = sentenceComponents.filter(
     (component) => component.toLowerCase() === lowerCaseSearch
   );
