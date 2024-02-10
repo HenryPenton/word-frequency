@@ -17,12 +17,17 @@ export const allWordCount = (fullSentence: string) => {
   const sentenceComponents = fullSentence.split(" ");
 
   const map = new Map<string, number>();
+  for (let index = 0; index < sentenceComponents.length; index++) {
+    const word = sentenceComponents[index];
+    const dictionaryEntry = map.get(word);
+    const shouldCountWord = !dictionaryEntry;
 
-  sentenceComponents.forEach((word) => {
-    const wordCount = singleWordCount(fullSentence, word);
+    if (shouldCountWord) {
+      const wordCount = singleWordCount(fullSentence, word);
 
-    map.set(word, wordCount);
-  });
+      map.set(word, wordCount);
+    }
+  }
 
   return map;
 };
