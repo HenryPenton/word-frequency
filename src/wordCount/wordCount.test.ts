@@ -127,7 +127,7 @@ describe("word count", () => {
     });
   });
 
-  describe("punctuation", () => {
+  describe("misc", () => {
     test("spaces aren't counted", () => {
       const fullSentence = "Who   the   who?";
       const countMap = WordCount.allWordCount(fullSentence);
