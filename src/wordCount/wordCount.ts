@@ -4,13 +4,15 @@ const punctuationRemover = (text: string) => {
   return noExclamationMarks.replace(/\./g, "");
 };
 
+const getSentenceComponents = (text: string) => text.split(" ");
+
 export const singleWordCount = (fullSentence: string, wordToCount: string) => {
   const lowerCaseSearch = wordToCount.toLowerCase();
-
   const punctuationRemovedSearch = punctuationRemover(lowerCaseSearch);
+
   const punctuationRemovedText = punctuationRemover(fullSentence);
 
-  const sentenceComponents = punctuationRemovedText.split(" ");
+  const sentenceComponents = getSentenceComponents(punctuationRemovedText);
 
   const totalOccurrences = sentenceComponents.filter(
     (component) => component.toLowerCase() === punctuationRemovedSearch
@@ -20,7 +22,7 @@ export const singleWordCount = (fullSentence: string, wordToCount: string) => {
 };
 
 export const allWordCount = (fullSentence: string) => {
-  const sentenceComponents = fullSentence.split(" ");
+  const sentenceComponents = getSentenceComponents(fullSentence);
   const wordMap = new Map<string, number>();
 
   for (let index = 0; index < sentenceComponents.length; index++) {

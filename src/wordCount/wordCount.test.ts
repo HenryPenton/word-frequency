@@ -141,6 +141,7 @@ describe("word count", () => {
 
       expect(mockSingleWordCount).toHaveBeenCalledTimes(1);
     });
+
     test("spaces aren't counted", () => {
       const fullSentence = "Who   the   who?";
       const countMap = WordCount.allWordCount(fullSentence);
