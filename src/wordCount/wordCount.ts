@@ -22,21 +22,18 @@ export const singleWordCount = (fullSentence: string, wordToCount: string) => {
 };
 
 export const allWordCount = (fullSentence: string) => {
-  const sentenceComponents = getSentenceComponents(fullSentence);
+  const uniqueSentenceComponents = [
+    ...new Set(getSentenceComponents(fullSentence)),
+  ];
+
   const wordMap = new Map<string, number>();
 
-  for (let index = 0; index < sentenceComponents.length; index++) {
-    const word = sentenceComponents[index];
+  for (let index = 0; index < uniqueSentenceComponents.length; index++) {
+    const word = uniqueSentenceComponents[index];
     if (word === "") break;
 
-    const mapEntry = wordMap.get(word);
-    const shouldCountWord = !mapEntry;
-
-    if (shouldCountWord) {
-      const wordCount = singleWordCount(fullSentence, word);
-
-      wordMap.set(word, wordCount);
-    }
+    const wordCount = singleWordCount(fullSentence, word);
+    wordMap.set(word, wordCount);
   }
 
   return wordMap;
