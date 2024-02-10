@@ -1,10 +1,6 @@
-const punctuationRemover = (text: string) => {
-  const noQuestionMarks = text.replace(/\?/g, "");
-  const noExclamationMarks = noQuestionMarks.replace(/!/g, "");
-  return noExclamationMarks.replace(/\./g, "");
-};
+import { punctuationRemover } from "../utils/punctuationRemover/punctuation";
 
-const getSentenceComponents = (text: string) => text.split(" ");
+export const getSentenceComponents = (text: string) => text.split(" ");
 
 /**
  * Count instances of a given word in a sentence.
@@ -13,11 +9,8 @@ const getSentenceComponents = (text: string) => text.split(" ");
  * @param {string} wordToCount - The word to count.
  */
 export const singleWordCount = (fullSentence: string, wordToCount: string) => {
-  const lowerCaseSearch = wordToCount.toLowerCase();
-  const lowerCaseSentence = fullSentence.toLowerCase();
-
-  const punctuationRemovedSearch = punctuationRemover(lowerCaseSearch);
-  const punctuationRemovedText = punctuationRemover(lowerCaseSentence);
+  const punctuationRemovedSearch = punctuationRemover(wordToCount);
+  const punctuationRemovedText = punctuationRemover(fullSentence);
 
   const sentenceComponents = getSentenceComponents(punctuationRemovedText);
   const totalOccurrences = sentenceComponents.filter(
@@ -33,7 +26,7 @@ export const singleWordCount = (fullSentence: string, wordToCount: string) => {
  * @param {string} fullSentence - The sentence to parse.
  */
 export const allWordCount = (fullSentence: string) => {
-  const noPunctuationSentence = punctuationRemover(fullSentence.toLowerCase());
+  const noPunctuationSentence = punctuationRemover(fullSentence);
   const uniqueSentenceComponents = new Set(
     getSentenceComponents(noPunctuationSentence)
   );
