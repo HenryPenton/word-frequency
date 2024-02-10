@@ -6,6 +6,13 @@ const punctuationRemover = (text: string) => {
 
 const getSentenceComponents = (text: string) => text.split(" ");
 
+
+/**
+ * Count instances of a given word in a sentence.
+ *
+ * @param {string} fullSentence - The sentence to parse.
+ * @param {string} wordToCount - The word to count.
+ */
 export const singleWordCount = (fullSentence: string, wordToCount: string) => {
   const lowerCaseSearch = wordToCount.toLowerCase();
   const lowerCaseSentence = fullSentence.toLowerCase();
@@ -21,6 +28,11 @@ export const singleWordCount = (fullSentence: string, wordToCount: string) => {
   return totalOccurrences.length;
 };
 
+/**
+ * Count instances of all words in a sentence.
+ *
+ * @param {string} fullSentence - The sentence to parse.
+ */
 export const allWordCount = (fullSentence: string) => {
   const uniqueSentenceComponents = new Set(getSentenceComponents(fullSentence));
   uniqueSentenceComponents.delete("");
