@@ -120,7 +120,7 @@ describe("word count", () => {
       expect(count).toBe(2);
     });
 
-    test.only("punctuated words aren't added to the map", () => {
+    test("punctuated words aren't added to the map", () => {
       const fullSentence = "who the who?";
       const map = WordCount.allWordCount(fullSentence);
       const expectedCountMap = new Map<string, number>()
@@ -130,7 +130,7 @@ describe("word count", () => {
       expect(map).toEqual(expectedCountMap);
     });
 
-    test.only("capitalised words aren't added to the map", () => {
+    test("capitalised words aren't added to the map", () => {
       const fullSentence = "What the what";
       const map = WordCount.allWordCount(fullSentence);
       const expectedCountMap = new Map<string, number>()
