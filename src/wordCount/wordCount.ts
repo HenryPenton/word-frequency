@@ -6,9 +6,10 @@ const punctuationRemover = (text: string) => {
 
 export const singleWordCount = (fullSentence: string, wordToCount: string) => {
   const lowerCaseSearch = wordToCount.toLowerCase();
-  const punctuationRemovedSearch = punctuationRemover(lowerCaseSearch);
 
+  const punctuationRemovedSearch = punctuationRemover(lowerCaseSearch);
   const punctuationRemovedText = punctuationRemover(fullSentence);
+
   const sentenceComponents = punctuationRemovedText.split(" ");
 
   const totalOccurrences = sentenceComponents.filter(
