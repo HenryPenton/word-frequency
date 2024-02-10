@@ -8,13 +8,12 @@ const getSentenceComponents = (text: string) => text.split(" ");
 
 export const singleWordCount = (fullSentence: string, wordToCount: string) => {
   const lowerCaseSearch = wordToCount.toLowerCase();
-  const punctuationRemovedSearch = punctuationRemover(lowerCaseSearch);
-
   const lowerCaseSentence = fullSentence.toLowerCase();
+
+  const punctuationRemovedSearch = punctuationRemover(lowerCaseSearch);
   const punctuationRemovedText = punctuationRemover(lowerCaseSentence);
 
   const sentenceComponents = getSentenceComponents(punctuationRemovedText);
-
   const totalOccurrences = sentenceComponents.filter(
     (component) => component === punctuationRemovedSearch
   );
