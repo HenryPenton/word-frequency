@@ -3,8 +3,9 @@ export const singleWordFrequency = (
   wordToCount: string
 ) => {
   const lowerCaseSearch = wordToCount.toLowerCase();
-
-  const sentenceComponents = fullSentence.split(" ");
+  const noQuestionMarks = fullSentence.replace(/\?/g, "");
+  const noExclamationMarks = noQuestionMarks.replace(/!/g, "");
+  const sentenceComponents = noExclamationMarks.split(" ");
   const totalOccurrences = sentenceComponents.filter(
     (component) => component.toLowerCase() === lowerCaseSearch
   );
