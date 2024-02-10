@@ -1,13 +1,18 @@
+const punctuationRemover = (text: string) => {
+  const noQuestionMarks = text.replace(/\?/g, "");
+  const noExclamationMarks = noQuestionMarks.replace(/!/g, "");
+  return noExclamationMarks.replace(/\./g, "");
+};
+
 export const singleWordCount = (fullSentence: string, wordToCount: string) => {
   const lowerCaseSearch = wordToCount.toLowerCase();
-  const noQuestionMarks = fullSentence.replace(/\?/g, "");
-  const noExclamationMarks = noQuestionMarks.replace(/!/g, "");
-  const noFullStops = noExclamationMarks.replace(/\./g, "");
+  const punctuationRemovedSearch = punctuationRemover(lowerCaseSearch);
 
-  const sentenceComponents = noFullStops.split(" ");
+  const punctuationRemovedText = punctuationRemover(fullSentence);
+  const sentenceComponents = punctuationRemovedText.split(" ");
 
   const totalOccurrences = sentenceComponents.filter(
-    (component) => component.toLowerCase() === lowerCaseSearch
+    (component) => component.toLowerCase() === punctuationRemovedSearch
   );
 
   return totalOccurrences.length;

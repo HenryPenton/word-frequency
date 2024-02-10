@@ -126,6 +126,13 @@ describe("word count", () => {
       expect(count).toBe(2);
     });
 
+    test("punctuation doesn't affect the search", () => {
+      const wordToCount = "who?";
+      const fullSentence = "Who the who..";
+      const count = WordCount.singleWordCount(fullSentence, wordToCount);
+      expect(count).toBe(2);
+    });
+
     test("multi spaces don't affect the count", () => {
       const wordToCount = "who";
       const fullSentence = "Who    would  do something  like     that";
