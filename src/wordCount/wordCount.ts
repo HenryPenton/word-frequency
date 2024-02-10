@@ -19,6 +19,7 @@ export const allWordCount = (fullSentence: string) => {
   const map = new Map<string, number>();
   for (let index = 0; index < sentenceComponents.length; index++) {
     const word = sentenceComponents[index];
+    if (word === "") break;
     const dictionaryEntry = map.get(word);
     const shouldCountWord = !dictionaryEntry;
 

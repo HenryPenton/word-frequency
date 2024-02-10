@@ -126,4 +126,13 @@ describe("word count", () => {
       expect(count).toBe(1);
     });
   });
+
+  describe("punctuation", () => {
+    test("spaces aren't counted", () => {
+      const fullSentence = "Who   the   who?";
+      const countMap = WordCount.allWordCount(fullSentence);
+
+      expect(countMap.get("")).toBeUndefined();
+    });
+  });
 });
