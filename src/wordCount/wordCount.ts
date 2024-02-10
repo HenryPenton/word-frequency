@@ -15,26 +15,22 @@ export const singleWordCount = (fullSentence: string, wordToCount: string) => {
 
   const sentenceComponents = getSentenceComponents(punctuationRemovedText);
   const totalOccurrences = sentenceComponents.filter(
-    (component) => component === punctuationRemovedSearch
+    (word) => word === punctuationRemovedSearch
   );
 
   return totalOccurrences.length;
 };
 
 export const allWordCount = (fullSentence: string) => {
-  const uniqueSentenceComponents = [
-    ...new Set(getSentenceComponents(fullSentence)),
-  ];
+  const uniqueSentenceComponents = new Set(getSentenceComponents(fullSentence));
+  uniqueSentenceComponents.delete("");
 
   const wordMap = new Map<string, number>();
 
-  for (let index = 0; index < uniqueSentenceComponents.length; index++) {
-    const word = uniqueSentenceComponents[index];
-    if (word === "") break;
-
+  uniqueSentenceComponents.forEach((word) => {
     const wordCount = singleWordCount(fullSentence, word);
     wordMap.set(word, wordCount);
-  }
+  });
 
   return wordMap;
 };
