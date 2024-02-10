@@ -61,19 +61,6 @@ describe("word count", () => {
 
       expect(countMap).toEqual(expectedCountMap);
     });
-
-    test("doesn't re-count the same word twice", () => {
-      const mockSingleWordCount = jest.fn(() => 2);
-
-      jest
-        .spyOn(WordCount, "singleWordCount")
-        .mockImplementation(mockSingleWordCount);
-
-      const fullSentence = "how how";
-      WordCount.allWordCount(fullSentence);
-
-      expect(mockSingleWordCount).toHaveBeenCalledTimes(1);
-    });
   });
 
   describe("punctuation", () => {
@@ -141,7 +128,19 @@ describe("word count", () => {
     });
   });
 
-  describe("misc", () => {
+  describe("performance", () => {
+    test("doesn't re-count the same word twice", () => {
+      const mockSingleWordCount = jest.fn(() => 2);
+
+      jest
+        .spyOn(WordCount, "singleWordCount")
+        .mockImplementation(mockSingleWordCount);
+
+      const fullSentence = "how how";
+      WordCount.allWordCount(fullSentence);
+
+      expect(mockSingleWordCount).toHaveBeenCalledTimes(1);
+    });
     test("spaces aren't counted", () => {
       const fullSentence = "Who   the   who?";
       const countMap = WordCount.allWordCount(fullSentence);
