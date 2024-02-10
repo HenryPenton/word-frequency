@@ -1,4 +1,5 @@
-import { singleWordCount } from "./frequency";
+import { singleWordCount } from "./wordCount";
+
 describe("single word count", () => {
   test("counts the frequency of a word in a string where there's a single occurrence", () => {
     const wordToCount = "how";
