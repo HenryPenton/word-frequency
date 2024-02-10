@@ -1,5 +1,5 @@
-import { punctuationRemover } from "../utils/punctuation/punctuation";
-import { getSentenceComponents } from "../utils/sentenceComponents/sentenceComponents";
+import { punctuationRemover } from "../../utils/punctuation/punctuation";
+import { getSentenceComponents } from "../../utils/sentenceComponents/sentenceComponents";
 
 /**
  * Count instances of a given word in a sentence.

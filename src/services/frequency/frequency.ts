@@ -1,4 +1,4 @@
-import { getSentenceComponents } from "../utils/sentenceComponents/sentenceComponents";
+import { getSentenceComponents } from "../../utils/sentenceComponents/sentenceComponents";
 import * as WordCount from "../wordCount/wordCount";
 
 export const singleFrequencyCount = (sentence: string, word: string) => {
@@ -13,10 +13,12 @@ export const singleFrequencyCount = (sentence: string, word: string) => {
     return Number(frequency.toFixed(4));
   }
 };
+
 export const allFrequencyCount = (sentence: string) => {
-  const sentenceComponents = getSentenceComponents(sentence);
+  const sentenceComponents = new Set(getSentenceComponents(sentence));
 
   const frequencyMap = new Map<string, number>();
+
   sentenceComponents.forEach((key) => {
     const single = singleFrequencyCount(sentence, key);
 

@@ -1,1 +1,1 @@
-export * from "./wordCount/wordCount";
+export * from "./services/wordCount/wordCount";
