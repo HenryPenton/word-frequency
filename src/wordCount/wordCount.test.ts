@@ -1,4 +1,4 @@
-import { singleWordCount } from "./wordCount";
+import { allWordCount, singleWordCount } from "./wordCount";
 
 describe("single word count", () => {
   test("counts the occurrences of a word in a string where there's one of the word", () => {
@@ -76,5 +76,47 @@ describe("single word count", () => {
     const fullSentence = "Who    would  do something  like     that";
     const count = singleWordCount(fullSentence, wordToCount);
     expect(count).toBe(1);
+  });
+});
+
+describe("all word frequency", () => {
+  test("counts the frequency of every word in a string for a one word string", () => {
+    const fullSentence = "how";
+    const countMap = allWordCount(fullSentence);
+
+    const expectedCountMap = new Map<string, number>();
+    expectedCountMap.set("how", 1);
+
+    expect(countMap).toEqual(expectedCountMap);
+  });
+
+  test("counts the frequency of every word in a string for a two word string where the words are different", () => {
+    const fullSentence = "how do";
+    const countMap = allWordCount(fullSentence);
+
+    const expectedCountMap = new Map<string, number>();
+    expectedCountMap.set("how", 1).set("do", 1);
+
+    expect(countMap).toEqual(expectedCountMap);
+  });
+
+  test("counts the frequency of every word in a string for a three word string where two of the words are the same", () => {
+    const fullSentence = "how do how";
+    const countMap = allWordCount(fullSentence);
+
+    const expectedCountMap = new Map<string, number>();
+    expectedCountMap.set("how", 2).set("do", 1);
+
+    expect(countMap).toEqual(expectedCountMap);
+  });
+
+  test("doesn't re-count the same word twice", () => {
+    const fullSentence = "how do how";
+    const countMap = allWordCount(fullSentence);
+
+    const expectedCountMap = new Map<string, number>();
+    expectedCountMap.set("how", 2).set("do", 1);
+
+    expect(countMap).toEqual(expectedCountMap);
   });
 });

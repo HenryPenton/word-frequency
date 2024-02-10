@@ -12,3 +12,17 @@ export const singleWordCount = (fullSentence: string, wordToCount: string) => {
 
   return totalOccurrences.length;
 };
+
+export const allWordCount = (fullSentence: string) => {
+  const sentenceComponents = fullSentence.split(" ");
+
+  const map = new Map<string, number>();
+
+  sentenceComponents.forEach((word) => {
+    const wordCount = singleWordCount(fullSentence, word);
+
+    map.set(word, wordCount);
+  });
+
+  return map;
+};
