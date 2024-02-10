@@ -120,6 +120,26 @@ describe("word count", () => {
       expect(count).toBe(2);
     });
 
+    test.only("punctuated words aren't added to the map", () => {
+      const fullSentence = "who the who?";
+      const map = WordCount.allWordCount(fullSentence);
+      const expectedCountMap = new Map<string, number>()
+        .set("who", 2)
+        .set("the", 1);
+
+      expect(map).toEqual(expectedCountMap);
+    });
+
+    test.only("capitalised words aren't added to the map", () => {
+      const fullSentence = "What the what";
+      const map = WordCount.allWordCount(fullSentence);
+      const expectedCountMap = new Map<string, number>()
+        .set("what", 2)
+        .set("the", 1);
+
+      expect(map).toEqual(expectedCountMap);
+    });
+
     test("multi spaces don't affect the count", () => {
       const wordToCount = "who";
       const fullSentence = "Who    would  do something  like     that";

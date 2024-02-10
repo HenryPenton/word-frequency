@@ -6,7 +6,6 @@ const punctuationRemover = (text: string) => {
 
 const getSentenceComponents = (text: string) => text.split(" ");
 
-
 /**
  * Count instances of a given word in a sentence.
  *
@@ -34,7 +33,10 @@ export const singleWordCount = (fullSentence: string, wordToCount: string) => {
  * @param {string} fullSentence - The sentence to parse.
  */
 export const allWordCount = (fullSentence: string) => {
-  const uniqueSentenceComponents = new Set(getSentenceComponents(fullSentence));
+  const noPunctuationSentence = punctuationRemover(fullSentence.toLowerCase());
+  const uniqueSentenceComponents = new Set(
+    getSentenceComponents(noPunctuationSentence)
+  );
   uniqueSentenceComponents.delete("");
 
   const wordMap = new Map<string, number>();
