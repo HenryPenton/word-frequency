@@ -1,14 +1,14 @@
 import { singleWordCount } from "./wordCount";
 
 describe("single word count", () => {
-  test("counts the frequency of a word in a string where there's a single occurrence", () => {
+  test("counts the occurrences of a word in a string where there's one of the word", () => {
     const wordToCount = "how";
     const fullSentence = "how are you";
     const count = singleWordCount(fullSentence, wordToCount);
     expect(count).toBe(1);
   });
 
-  test("counts the frequency of a word in a string where there's a multiple occurrences", () => {
+  test("counts the occurrences of a word in a string where there's multiple of the word", () => {
     const wordToCount = "what";
     const fullSentence = "what the what";
     const count = singleWordCount(fullSentence, wordToCount);
