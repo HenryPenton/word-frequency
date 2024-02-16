@@ -74,9 +74,6 @@ describe("word count", () => {
     test("counts the number of every word long form text", () => {
       const countMap = WordCount.allWordCount(longform);
 
-      const expectedCountMap = new Map<string, number>();
-      expectedCountMap.set("the", 16).set("of", 5).set("with", 4);
-
       expect(countMap.get("the")).toEqual(16);
       expect(countMap.get("of")).toEqual(5);
       expect(countMap.get("with")).toEqual(4);
