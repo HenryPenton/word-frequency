@@ -7,7 +7,7 @@ import { getSentenceComponents } from "../../utils/sentenceComponents/sentenceCo
  * @param {string} text - The text to parse.
  * @param {string} word - The word to count.
  */
-export const singleWordCount = (text: string, word: string) => {
+export const singleWordCount = (text: string, word: string): number => {
   const punctuationRemovedSearch = punctuationRemover(word);
 
   const sentenceComponents = getSentenceComponents(text);
@@ -23,7 +23,7 @@ export const singleWordCount = (text: string, word: string) => {
  *
  * @param {string} text - The text to parse.
  */
-export const allWordCount = (text: string) => {
+export const allWordCount = (text: string): Map<string, number> => {
   const uniqueSentenceComponents = new Set(getSentenceComponents(text));
   uniqueSentenceComponents.delete("");
 
