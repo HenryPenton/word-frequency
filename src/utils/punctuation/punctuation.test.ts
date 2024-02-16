@@ -129,4 +129,11 @@ describe("punctuation", () => {
 
     expect(noPunctuationSentence).toBe("yes no");
   });
+
+  test("new lines are removed from the sentence", () => {
+    const fullSentence = `yes \r \n no`;
+    const noPunctuationSentence = punctuationRemover(fullSentence);
+
+    expect(noPunctuationSentence).toBe("yes     no");
+  });
 });
