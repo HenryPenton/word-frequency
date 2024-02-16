@@ -65,6 +65,27 @@ describe("frequencies", () => {
     });
   });
 
+  describe("long form text", () => {
+    test("single word in long block of text", () => {
+      const wordToCount = "eggplant";
+
+      const count = Frequency.singleFrequencyCount(longform, wordToCount);
+      const expectedFrequency = Number((2 / 57).toFixed(4));
+      expect(count).toBe(expectedFrequency);
+    });
+
+    test("counts the number of every word long form text", () => {
+      const frequencyMap = Frequency.allFrequencyCount(longform);
+
+      const expectedTheFrequency = Number((5 / 57).toFixed(4));
+      const expectedOfFrequency = Number((3 / 57).toFixed(4));
+      const expectedWithFrequency = Number((1 / 57).toFixed(4));
+
+      expect(frequencyMap.get("the")).toEqual(expectedTheFrequency);
+      expect(frequencyMap.get("of")).toEqual(expectedOfFrequency);
+      expect(frequencyMap.get("with")).toEqual(expectedWithFrequency);
+    });
+  });
   describe("performance", () => {
     test("doesn't re-count the frequency of the same word twice", () => {
       const mockSingleFrequencyCount = jest.fn(() => 2);
@@ -80,3 +101,7 @@ describe("frequencies", () => {
     });
   });
 });
+
+const longform = `In Maria's kitchen, the aroma of garlic and onions filled the air as she prepared her signature dish, ratatouille. Among the veggies, the eggplant stood out, promising flavor with every slice.
+
+At the market square, colorful displays of produce caught shoppers' eyes. Eggplant, tomatoes, and herbs begged to be picked, inspiring visions of delightful meals to come.`;
