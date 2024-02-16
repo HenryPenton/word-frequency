@@ -55,4 +55,18 @@ describe("punctuation", () => {
 
     expect(noPunctuationSentence).toBe("who the who");
   });
+
+  test("single quotes are removed from the sentence", () => {
+    const fullSentence = `'Who the who'`;
+    const noPunctuationSentence = punctuationRemover(fullSentence);
+
+    expect(noPunctuationSentence).toBe("who the who");
+  });
+
+  test("double quotes are removed from the sentence", () => {
+    const fullSentence = `"Who the who"`;
+    const noPunctuationSentence = punctuationRemover(fullSentence);
+
+    expect(noPunctuationSentence).toBe("who the who");
+  });
 });
