@@ -24,10 +24,7 @@ export const singleWordCount = (text: string, word: string) => {
  * @param {string} text - The text to parse.
  */
 export const allWordCount = (text: string) => {
-  const noPunctuationSentence = punctuationRemover(text);
-  const uniqueSentenceComponents = new Set(
-    getSentenceComponents(noPunctuationSentence)
-  );
+  const uniqueSentenceComponents = new Set(getSentenceComponents(text));
   uniqueSentenceComponents.delete("");
 
   const wordMap = new Map<string, number>();
