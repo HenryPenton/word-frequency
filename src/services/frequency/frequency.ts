@@ -18,7 +18,6 @@ export const singleFrequencyCount = (text: string, word: string): number => {
     const frequency = wordCount / total;
     return Number(frequency.toFixed(4));
   }
-  
   return 0;
 };
 

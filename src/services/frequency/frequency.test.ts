@@ -16,6 +16,13 @@ describe("frequencies", () => {
       expect(frequency).toBe(0.5);
     });
 
+    test("a word that doesn't appear in the sentence has a frequency of 0%", () => {
+      const sentence = "what is the tim";
+      const frequency = Frequency.singleFrequencyCount(sentence, "potatoes");
+
+      expect(frequency).toBe(0);
+    });
+
     test("percentages are limited to four decimal places", () => {
       const sentence = "why not me?";
       const frequency = Frequency.singleFrequencyCount(sentence, "why");
