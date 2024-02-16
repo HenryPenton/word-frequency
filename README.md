@@ -21,4 +21,17 @@ singleFrequencyCount("I am a sentence", "sentence"); // => 0.25;
 allFrequencyCount("I am a sentence", "sentence"); // => Map{ 'I' => 0.25; 'am' => 0.25; 'a' => 0.25; 'sentence' => 0.25; };
 ```
 
-Full stops, exclamation marks and question marks are removed from sentences before processing. All words are processed in the lower case.
+All words are processed in the lower case. The following punctuation is removed from text before processing:
+
+- ?
+- !
+- .
+- ,
+- ;
+- :
+- ()
+- []
+- "
+- '
+- &
+- /
