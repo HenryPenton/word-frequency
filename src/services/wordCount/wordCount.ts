@@ -2,15 +2,15 @@ import { punctuationRemover } from "../../utils/punctuation/punctuation";
 import { getSentenceComponents } from "../../utils/sentenceComponents/sentenceComponents";
 
 /**
- * Count instances of a given word in a sentence.
+ * Count instances of a given word in a block of text.
  *
- * @param {string} fullSentence - The sentence to parse.
- * @param {string} wordToCount - The word to count.
+ * @param {string} text - The text to parse.
+ * @param {string} word - The word to count.
  */
-export const singleWordCount = (fullSentence: string, wordToCount: string) => {
-  const punctuationRemovedSearch = punctuationRemover(wordToCount);
+export const singleWordCount = (text: string, word: string) => {
+  const punctuationRemovedSearch = punctuationRemover(word);
 
-  const sentenceComponents = getSentenceComponents(fullSentence);
+  const sentenceComponents = getSentenceComponents(text);
   const totalOccurrences = sentenceComponents.filter(
     (word) => word === punctuationRemovedSearch
   );
@@ -19,12 +19,12 @@ export const singleWordCount = (fullSentence: string, wordToCount: string) => {
 };
 
 /**
- * Count instances of all words in a sentence.
+ * Count instances of all words in a block of text.
  *
- * @param {string} fullSentence - The sentence to parse.
+ * @param {string} text - The text to parse.
  */
-export const allWordCount = (fullSentence: string) => {
-  const noPunctuationSentence = punctuationRemover(fullSentence);
+export const allWordCount = (text: string) => {
+  const noPunctuationSentence = punctuationRemover(text);
   const uniqueSentenceComponents = new Set(
     getSentenceComponents(noPunctuationSentence)
   );
@@ -33,7 +33,7 @@ export const allWordCount = (fullSentence: string) => {
   const wordMap = new Map<string, number>();
 
   uniqueSentenceComponents.forEach((word) => {
-    const wordCount = singleWordCount(fullSentence, word);
+    const wordCount = singleWordCount(text, word);
     wordMap.set(word, wordCount);
   });
 
