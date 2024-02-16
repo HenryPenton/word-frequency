@@ -63,6 +63,26 @@ describe("word count", () => {
     });
   });
 
+  describe("long form text", () => {
+    test("single word in long block of text", () => {
+      const wordToCount = "eggplant";
+
+      const count = WordCount.singleWordCount(longform, wordToCount);
+      expect(count).toBe(7);
+    });
+
+    test("counts the number of every word long form text", () => {
+      const countMap = WordCount.allWordCount(longform);
+
+      const expectedCountMap = new Map<string, number>();
+      expectedCountMap.set("the", 16).set("of", 5).set("with", 4);
+
+      expect(countMap.get("the")).toEqual(16);
+      expect(countMap.get("of")).toEqual(5);
+      expect(countMap.get("with")).toEqual(4);
+    });
+  });
+
   describe("punctuation", () => {
     test("single question mark doesn't affect the count", () => {
       const wordToCount = "who";
@@ -170,3 +190,7 @@ describe("word count", () => {
     });
   });
 });
+
+const longform = `As the sun dipped low on the horizon, casting a warm glow over the verdant fields, farmers gathered their bounty of freshly harvested vegetables. Among the crates overflowing with produce, it was the eggplant that stood out, its deep purple hue contrasting vividly against the earthy tones of the surrounding crops. With gentle hands, they carefully sorted the eggplant, selecting only the finest specimens to bring to market. Each eggplant, with its smooth skin and firm flesh, promised culinary delights for those fortunate enough to bring it home.
+
+In bustling kitchens across the city, chefs wielded their knives with precision, preparing a feast fit for royalty. Eggplant reigned supreme on their cutting boards, destined to be transformed into exquisite dishes that would tantalize the taste buds of diners far and wide. From creamy eggplant moussaka to spicy eggplant curry, each creation showcased the versatility of this humble vegetable. As savory aromas filled the air, patrons eagerly awaited their meals, anticipating the moment when they would savor the rich flavors of the eggplant once more.`;
