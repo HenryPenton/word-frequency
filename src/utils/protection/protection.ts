@@ -1,11 +1,11 @@
 import { generateRandomStrings } from "../randomStringGenerator/generator";
 
-export type PreservationMap = Map<string, string>;
+export type ProtectionMap = Map<string, string>;
 
-export const buildPreservationMap = (
+export const buildProtectionMap = (
   preservedWords: string[],
-  preservationMap: PreservationMap
-): PreservationMap => {
+  preservationMap: ProtectionMap
+): ProtectionMap => {
   const randomStrings = generateRandomStrings(preservedWords.length);
   preservedWords.forEach((preservedWord, index) => {
     preservationMap.set(preservedWord, `${randomStrings[index]}`);
@@ -15,7 +15,7 @@ export const buildPreservationMap = (
 };
 
 export const addWordProtection = (
-  preservationMap: PreservationMap,
+  preservationMap: ProtectionMap,
   text: string
 ): string => {
   let protectedString = text;
@@ -28,7 +28,7 @@ export const addWordProtection = (
 };
 
 export const removeWordProtection = (
-  preservationMap: PreservationMap,
+  preservationMap: ProtectionMap,
   text: string
 ): string => {
   let unprotectedString = text;

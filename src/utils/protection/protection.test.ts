@@ -1,21 +1,21 @@
 import {
-  PreservationMap,
+  ProtectionMap,
   addWordProtection,
-  buildPreservationMap,
+  buildProtectionMap,
   removeWordProtection,
 } from "./protection";
 
 describe("protection", () => {
   test("can build a map between words and randomised strings", () => {
-    const preservationMap: PreservationMap = new Map();
+    const preservationMap: ProtectionMap = new Map();
     jest.spyOn(Math, "random").mockImplementation(() => 0.5);
-    buildPreservationMap(["word"], preservationMap);
+    buildProtectionMap(["word"], preservationMap);
 
     expect(preservationMap.get("word")).toEqual("ssssssssss");
   });
 
   test("protects words by replacing them using the map", () => {
-    const preservationMap: PreservationMap = new Map();
+    const preservationMap: ProtectionMap = new Map();
     preservationMap.set("word", "abcdefghi");
     const protectedText = addWordProtection(
       preservationMap,
@@ -26,7 +26,7 @@ describe("protection", () => {
   });
 
   test("unprotects words by replacing them using the map", () => {
-    const preservationMap: PreservationMap = new Map();
+    const preservationMap: ProtectionMap = new Map();
     preservationMap.set("word", "abcdefghi");
     const protectedText = removeWordProtection(
       preservationMap,
