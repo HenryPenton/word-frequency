@@ -6,6 +6,7 @@ import { getSentenceComponents } from "../../utils/sentenceComponents/sentenceCo
  *
  * @param {string} text - The text to parse.
  * @param {string} word - The word to count.
+ * @param {string} protectionList - Words or phases that should be counted as is (punctuation is not removed).
  */
 export const singleWordCount = (
   text: string,
@@ -26,6 +27,7 @@ export const singleWordCount = (
  * Count instances of all words in a block of text.
  *
  * @param {string} text - The text to parse.
+ * @param {string} protectionList - Words or phases that should be counted as is (punctuation is not removed).
  */
 export const allWordCount = (
   text: string,

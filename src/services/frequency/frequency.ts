@@ -6,6 +6,7 @@ import * as WordCount from "../wordCount/wordCount";
  *
  * @param {string} text - The text to parse.
  * @param {string} word - The word to check the frequency of.
+ * @param {string} protectionList - Words or phases that should be counted as is (punctuation is not removed).
  */
 export const singleFrequencyCount = (
   text: string,
@@ -30,6 +31,7 @@ export const singleFrequencyCount = (
  * Count frequency of all words in a block of text.
  *
  * @param {string} text - The text to parse.
+ * @param {string} protectionList - Words or phases that should be counted as is (punctuation is not removed).
  */
 export const allFrequencyCount = (
   text: string,
