@@ -45,9 +45,7 @@ export const allFrequencyCount = (
   sentenceComponents.forEach((key) => {
     const single = singleFrequencyCount(text, key, settings);
 
-    if (single) {
-      frequencyMap.set(key, single);
-    }
+    frequencyMap.set(key, single);
   });
 
   return frequencyMap;
