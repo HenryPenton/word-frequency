@@ -1,3 +1,10 @@
+import {
+  MathRandomGeneratorDuplicateError,
+  OverrideGeneratorAlphanumericError,
+  OverrideGeneratorCapitalError,
+  OverrideGeneratorDuplicateError,
+} from "../../errors/generatorErrors/generatorErrors";
+
 const generateRandomString = (): string => {
   const alphanumeric = "abcdefghijklmnopqrstuvwxyz0123456789";
   let result = "";
@@ -32,12 +39,12 @@ const checkStringTypeErrors = (
   randomValue: string
 ): void => {
   if (hasOverride && !isAlphaNumeric(randomValue)) {
-    throw new Error(
+    throw new OverrideGeneratorAlphanumericError(
       "The override generator provided generated a non alphanumeric string"
     );
   }
   if (containsCaps(randomValue)) {
-    throw new Error(
+    throw new OverrideGeneratorCapitalError(
       "The override generator provided generated a string containing capital letters"
     );
   }
@@ -50,12 +57,12 @@ const checkStringDuplicateErrors = (
 ): void => {
   const hasStringDuplicate = randomStrings.size < numberOfStrings;
   if (hasStringDuplicate && hasOverride) {
-    throw new Error(
+    throw new OverrideGeneratorDuplicateError(
       "It looks like the override generator you provided generated the same 'random' string twice!"
     );
   }
   if (hasStringDuplicate && !hasOverride) {
-    throw new Error(
+    throw new MathRandomGeneratorDuplicateError(
       "It looks like Math.random generated the same 'random' string twice! Sorry about that, you may wish to provide an override generator."
     );
   }
