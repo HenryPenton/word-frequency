@@ -20,4 +20,28 @@ describe("random strings", () => {
 
     expect(randomStrings[0]).not.toEqual(randomStrings[1]);
   });
+
+  test("can take an override generator", () => {
+    const override: () => string = () => "aaaaa12345";
+    const randomStrings = generateRandomStrings(2, override);
+
+    //although these two strings are not unique, it is the responsibility of the provider of the override to make sure the random string generator is random
+    //the purpose of this test is checking that the override is user, not that it generates good values
+    expect(randomStrings[0]).toEqual("aaaaa12345");
+    expect(randomStrings[1]).toEqual("aaaaa12345");
+  });
+
+  test("should throw an error if the override generator generates something non alpha numeric", () => {
+    const override: () => string = () => "aaaaa12345;";
+    expect(() => generateRandomStrings(2, override)).toThrow(
+      "The override generator provided generated a non alphanumeric string"
+    );
+  });
+
+  test("should throw an error if the override generator generates something non lower case", () => {
+    const override: () => string = () => "ABCDE12345";
+    expect(() => generateRandomStrings(2, override)).toThrow(
+      "The override generator provided generated a string containing capital letters"
+    );
+  });
 });

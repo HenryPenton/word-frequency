@@ -10,12 +10,33 @@ const generateRandomString = (): string => {
   return result;
 };
 
-export const generateRandomStrings = (numberOfStrings: number): string[] => {
+export const generateRandomStrings = (
+  numberOfStrings: number,
+  override?: () => string
+): string[] => {
   const randomStrings: string[] = [];
 
   for (let count = 0; count < numberOfStrings; count++) {
-    randomStrings.push(generateRandomString());
+    const randomValue = override ? override() : generateRandomString();
+    if (override && !isAlphaNumeric(randomValue)) {
+      throw new Error(
+        "The override generator provided generated a non alphanumeric string"
+      );
+    }
+    if (containsCaps(randomValue)) {
+      throw new Error(
+        "The override generator provided generated a string containing capital letters"
+      );
+    }
+    randomStrings.push(randomValue);
   }
 
   return randomStrings;
+};
+const isAlphaNumeric = (string: string): boolean => {
+  return /^[a-zA-Z0-9]+$/.test(string);
+};
+
+const containsCaps = (string: string): boolean => {
+  return /[A-Z]/.test(string);
 };
