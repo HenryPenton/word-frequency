@@ -2,6 +2,8 @@ import { Settings } from "../..";
 import { getUniqueSentenceComponents } from "../../utils/sentenceComponents/sentenceComponents";
 import { allWordCount } from "../wordCount/wordCount";
 
+type FrequencyMap = Map<string, number>;
+
 /**
  * Find frequency of a given word in a block of text.
  *
@@ -37,10 +39,10 @@ export const singleFrequencyCount = (
 export const allFrequencyCount = (
   text: string,
   settings: Settings = {}
-): Map<string, number> => {
+): FrequencyMap => {
   const uniqueSentenceComponents = getUniqueSentenceComponents(text, settings);
 
-  const frequencyMap = new Map<string, number>();
+  const frequencyMap: FrequencyMap = new Map();
 
   uniqueSentenceComponents.forEach((uniqueSentenceComponent) => {
     const single = singleFrequencyCount(

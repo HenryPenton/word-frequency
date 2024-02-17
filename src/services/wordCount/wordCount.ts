@@ -5,6 +5,7 @@ import {
   getUniqueSentenceComponents,
 } from "../../utils/sentenceComponents/sentenceComponents";
 
+type WordMap = Map<string, number>;
 /**
  * Count instances of a given word in a block of text.
  *
@@ -36,10 +37,10 @@ export const singleWordCount = (
 export const allWordCount = (
   text: string,
   settings: Settings = {}
-): Map<string, number> => {
+): WordMap => {
   const uniqueSentenceComponents = getUniqueSentenceComponents(text, settings);
 
-  const wordMap = new Map<string, number>();
+  const wordMap: WordMap = new Map();
 
   uniqueSentenceComponents.forEach((word) => {
     const wordCount = singleWordCount(text, word, settings);
