@@ -67,7 +67,7 @@ The way these phrases or words are protected is by first replacing them with a l
 
 To keep this library zero-dependency, the alphanumeric strings have been generated using Math.random. This means there is a miniscule chance that two non-unique strings get generated.
 
-If you wish to counter this, you may provide a random string generator in the settings, the only constraints are that the string is alphanumeric and lower case. For instance this could be a lowercase uuid with the hyphens removed.
+If you wish to counter this, you may provide a random string generator in the config, the only constraints are that the string is alphanumeric and lower case. For instance this could be a lowercase uuid with the hyphens removed.
 
 ```javascript
 () => uuidv4().replace(/-/g, "");

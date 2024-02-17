@@ -1,21 +1,21 @@
-import { Settings } from "../..";
+import { Config } from "../../config";
 import { Protection } from "../protection/protection";
 import { punctuationRemover } from "../punctuation/punctuation";
 
 export const getSentenceComponents = (
   text: string,
-  settings: Settings
+  config: Config
 ): string[] => {
-  const { protectionList } = settings;
+  const { protectionList } = config;
   const protection = new Protection(
-    protectionList ?? [],
-    settings.overrideUniqueAlphaNumericGenerator
+    protectionList,
+    config.overrideUniqueAlphaNumericGenerator
   );
   let content = text;
 
   content = protection.addWordProtection(text);
 
-  const sentenceComponents = punctuationRemover(content, settings).split(" ");
+  const sentenceComponents = punctuationRemover(content, config).split(" ");
   const unprotectedSentenceComponents = [];
   for (const sentenceComponent of sentenceComponents) {
     unprotectedSentenceComponents.push(
@@ -28,7 +28,7 @@ export const getSentenceComponents = (
 
 export const getUniqueSentenceComponents = (
   text: string,
-  settings: Settings
+  config: Config
 ): Set<string> => {
-  return new Set(getSentenceComponents(text, settings));
+  return new Set(getSentenceComponents(text, config));
 };

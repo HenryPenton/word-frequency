@@ -1,4 +1,4 @@
-import { Settings } from "../..";
+import { Config } from "../../config";
 import { Protection } from "../protection/protection";
 
 const removePunctuation = (text: string): string =>
@@ -8,16 +8,13 @@ const removePunctuation = (text: string): string =>
     .replace(/[\r\n]+/gm, " ")
     .replace(/[^\w\s]/g, "");
 
-export const punctuationRemover = (
-  text: string,
-  settings: Settings
-): string => {
+export const punctuationRemover = (text: string, config: Config): string => {
   let content = text;
-  const { protectionList } = settings;
+  const { protectionList } = config;
 
   const protection = new Protection(
-    protectionList ?? [],
-    settings.overrideUniqueAlphaNumericGenerator
+    protectionList,
+    config.overrideUniqueAlphaNumericGenerator
   );
 
   content = protection.addWordProtection(content);

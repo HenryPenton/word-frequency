@@ -1,4 +1,4 @@
-import { Settings } from "../..";
+import { Config, defaultConfig } from "../../config";
 import { punctuationRemover } from "../../utils/punctuation/punctuation";
 import {
   getSentenceComponents,
@@ -11,15 +11,15 @@ type WordMap = Map<string, number>;
  *
  * @param {string} text - The text to parse.
  * @param {string} word - The word to count.
- * @param {Settings} settings - Settings for the word counter
+ * @param {Config} config - Configuration for the word counter
  */
 export const singleWordCount = (
   text: string,
   word: string,
-  settings: Settings = {}
+  config: Config = defaultConfig
 ): number => {
-  const punctuationRemovedSearch = punctuationRemover(word, settings);
-  const sentenceComponents = getSentenceComponents(text, settings);
+  const punctuationRemovedSearch = punctuationRemover(word, config);
+  const sentenceComponents = getSentenceComponents(text, config);
 
   const totalOccurrences = sentenceComponents.filter(
     (word) => word === punctuationRemovedSearch
@@ -32,18 +32,18 @@ export const singleWordCount = (
  * Count instances of all words in a block of text.
  *
  * @param {string} text - The text to parse.
- * @param {Settings} settings - Settings for the word counter
+ * @param {Config} config - Configuration for the word counter
  */
 export const allWordCount = (
   text: string,
-  settings: Settings = {}
+  config: Config = defaultConfig
 ): WordMap => {
-  const uniqueSentenceComponents = getUniqueSentenceComponents(text, settings);
+  const uniqueSentenceComponents = getUniqueSentenceComponents(text, config);
 
   const wordMap: WordMap = new Map();
 
   uniqueSentenceComponents.forEach((word) => {
-    const wordCount = singleWordCount(text, word, settings);
+    const wordCount = singleWordCount(text, word, config);
     wordMap.set(word, wordCount);
   });
 

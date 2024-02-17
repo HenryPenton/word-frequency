@@ -1,7 +1,4 @@
-export type Settings = {
-  protectionList?: string[];
-  overrideUniqueAlphaNumericGenerator?: () => string;
-};
+export { Config } from "./config";
 
 export * from "./services/frequency/frequency";
 export * from "./services/wordCount/wordCount";

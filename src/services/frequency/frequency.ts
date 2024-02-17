@@ -1,4 +1,4 @@
-import { Settings } from "../..";
+import { Config, defaultConfig } from "../../config";
 import { getUniqueSentenceComponents } from "../../utils/sentenceComponents/sentenceComponents";
 import { allWordCount } from "../wordCount/wordCount";
 
@@ -9,14 +9,14 @@ type FrequencyMap = Map<string, number>;
  *
  * @param {string} text - The text to parse.
  * @param {string} word - The word to check the frequency of.
- * @param {Settings} settings - Settings for the word counter
+ * @param {Config} config - Configuration for the word counter
  */
 export const singleFrequencyCount = (
   text: string,
   word: string,
-  settings: Settings = {}
+  config: Config = defaultConfig
 ): number => {
-  const wordMap = allWordCount(text, settings);
+  const wordMap = allWordCount(text, config);
   let total = 0;
   wordMap.forEach((wordCount) => (total += wordCount));
 
@@ -34,22 +34,18 @@ export const singleFrequencyCount = (
  * Count frequency of all words in a block of text.
  *
  * @param {string} text - The text to parse.
- * @param {Settings} settings - Settings for the word counter
+ * @param {Config} config - Configuration for the word counter
  */
 export const allFrequencyCount = (
   text: string,
-  settings: Settings = {}
+  config: Config = defaultConfig
 ): FrequencyMap => {
-  const uniqueSentenceComponents = getUniqueSentenceComponents(text, settings);
+  const uniqueSentenceComponents = getUniqueSentenceComponents(text, config);
 
   const frequencyMap: FrequencyMap = new Map();
 
   uniqueSentenceComponents.forEach((uniqueSentenceComponent) => {
-    const single = singleFrequencyCount(
-      text,
-      uniqueSentenceComponent,
-      settings
-    );
+    const single = singleFrequencyCount(text, uniqueSentenceComponent, config);
 
     frequencyMap.set(uniqueSentenceComponent, single);
   });
