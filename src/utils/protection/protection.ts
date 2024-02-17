@@ -5,13 +5,19 @@ type ProtectionMap = Map<string, string>;
 export class Protection {
   private protectionMap: ProtectionMap;
 
-  constructor(preservedWords: string[]) {
+  constructor(
+    preservedWords: string[],
+    readonly overrideGenerator?: () => string
+  ) {
     this.protectionMap = this.buildProtectionMap(preservedWords);
   }
 
   buildProtectionMap = (preservedWords: string[]): ProtectionMap => {
     const protectionMap: ProtectionMap = new Map();
-    const randomStrings = generateRandomStrings(preservedWords.length);
+    const randomStrings = generateRandomStrings(
+      preservedWords.length,
+      this.overrideGenerator
+    );
     preservedWords.forEach((preservedWord, index) => {
       protectionMap.set(preservedWord, `${randomStrings[index]}`);
     });
