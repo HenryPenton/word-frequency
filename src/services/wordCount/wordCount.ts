@@ -1,3 +1,4 @@
+import { Settings } from "../..";
 import { punctuationRemover } from "../../utils/punctuation/punctuation";
 import { getSentenceComponents } from "../../utils/sentenceComponents/sentenceComponents";
 
@@ -6,15 +7,15 @@ import { getSentenceComponents } from "../../utils/sentenceComponents/sentenceCo
  *
  * @param {string} text - The text to parse.
  * @param {string} word - The word to count.
- * @param {string} protectionList - Words or phases that should be counted as is (punctuation is not removed).
+ * @param {Settings} settings - Settings for the word counter
  */
 export const singleWordCount = (
   text: string,
   word: string,
-  protectionList?: string[]
+  settings: Settings = {}
 ): number => {
-  const punctuationRemovedSearch = punctuationRemover(word, protectionList);
-  const sentenceComponents = getSentenceComponents(text, protectionList);
+  const punctuationRemovedSearch = punctuationRemover(word, settings);
+  const sentenceComponents = getSentenceComponents(text, settings);
 
   const totalOccurrences = sentenceComponents.filter(
     (word) => word === punctuationRemovedSearch
@@ -27,21 +28,21 @@ export const singleWordCount = (
  * Count instances of all words in a block of text.
  *
  * @param {string} text - The text to parse.
- * @param {string} protectionList - Words or phases that should be counted as is (punctuation is not removed).
+ * @param {Settings} settings - Settings for the word counter
  */
 export const allWordCount = (
   text: string,
-  protectionList?: string[]
+  settings: Settings = {}
 ): Map<string, number> => {
   const uniqueSentenceComponents = new Set(
-    getSentenceComponents(text, protectionList)
+    getSentenceComponents(text, settings)
   );
   uniqueSentenceComponents.delete("");
 
   const wordMap = new Map<string, number>();
 
   uniqueSentenceComponents.forEach((word) => {
-    const wordCount = singleWordCount(text, word, protectionList);
+    const wordCount = singleWordCount(text, word, settings);
     wordMap.set(word, wordCount);
   });
 

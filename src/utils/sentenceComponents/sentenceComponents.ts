@@ -1,18 +1,18 @@
+import { Settings } from "../..";
 import { Protection } from "../protection/protection";
 import { punctuationRemover } from "../punctuation/punctuation";
 
 export const getSentenceComponents = (
   text: string,
-  preservedWords: string[] = []
+  settings: Settings
 ): string[] => {
-  const protection = new Protection(preservedWords);
+  const { protectionList } = settings;
+  const protection = new Protection(protectionList ?? []);
   let content = text;
-  if (preservedWords) {
+  if (protectionList) {
     content = protection.addWordProtection(text);
   }
-  const sentenceComponents = punctuationRemover(content, preservedWords).split(
-    " "
-  );
+  const sentenceComponents = punctuationRemover(content, settings).split(" ");
   const unprotectedSentenceComponents = [];
   for (const sentenceComponent of sentenceComponents) {
     unprotectedSentenceComponents.push(

@@ -25,9 +25,9 @@ describe("frequencies", () => {
 
     test("protected word frequency is counted as is", () => {
       const sentence = "Lock & Co is a hatters in london";
-      const frequency = Frequency.singleFrequencyCount(sentence, "Lock & Co", [
-        "Lock & Co",
-      ]);
+      const frequency = Frequency.singleFrequencyCount(sentence, "Lock & Co", {
+        protectionList: ["Lock & Co"],
+      });
 
       expect(frequency).toBe(0.1667);
     });
@@ -75,7 +75,9 @@ describe("frequencies", () => {
 
     test("protected word frequency is counted as part of the map", () => {
       const sentence = "Lock & Co is a hatters in london";
-      const frequency = Frequency.allFrequencyCount(sentence, ["Lock & Co"]);
+      const frequency = Frequency.allFrequencyCount(sentence, {
+        protectionList: ["Lock & Co"],
+      });
       const expectedFrequencyMap = new Map<string, number>()
         .set("Lock & Co", 0.1667)
         .set("is", 0.1667)

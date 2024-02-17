@@ -1,3 +1,4 @@
+import { Settings } from "../..";
 import { getSentenceComponents } from "../../utils/sentenceComponents/sentenceComponents";
 import * as WordCount from "../wordCount/wordCount";
 
@@ -6,14 +7,14 @@ import * as WordCount from "../wordCount/wordCount";
  *
  * @param {string} text - The text to parse.
  * @param {string} word - The word to check the frequency of.
- * @param {string} protectionList - Words or phases that should be counted as is (punctuation is not removed).
+ * @param {Settings} settings - Settings for the word counter
  */
 export const singleFrequencyCount = (
   text: string,
   word: string,
-  protectionList?: string[]
+  settings: Settings = {}
 ): number => {
-  const wordMap = WordCount.allWordCount(text, protectionList);
+  const wordMap = WordCount.allWordCount(text, settings);
   let total = 0;
   wordMap.forEach((wordCount) => (total += wordCount));
 
@@ -31,20 +32,18 @@ export const singleFrequencyCount = (
  * Count frequency of all words in a block of text.
  *
  * @param {string} text - The text to parse.
- * @param {string} protectionList - Words or phases that should be counted as is (punctuation is not removed).
+ * @param {Settings} settings - Settings for the word counter
  */
 export const allFrequencyCount = (
   text: string,
-  protectionList?: string[]
+  settings: Settings = {}
 ): Map<string, number> => {
-  const sentenceComponents = new Set(
-    getSentenceComponents(text, protectionList)
-  );
+  const sentenceComponents = new Set(getSentenceComponents(text, settings));
 
   const frequencyMap = new Map<string, number>();
 
   sentenceComponents.forEach((key) => {
-    const single = singleFrequencyCount(text, key, protectionList);
+    const single = singleFrequencyCount(text, key, settings);
 
     if (single) {
       frequencyMap.set(key, single);

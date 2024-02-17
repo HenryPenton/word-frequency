@@ -1,3 +1,4 @@
+import { Settings } from "../..";
 import { Protection } from "../protection/protection";
 
 const removePunctuation = (text: string): string =>
@@ -9,12 +10,14 @@ const removePunctuation = (text: string): string =>
 
 export const punctuationRemover = (
   text: string,
-  preservedWords: string[] = []
+  settings: Settings
 ): string => {
   let content = text;
-  const protection = new Protection(preservedWords);
+  const { protectionList } = settings;
 
-  if (preservedWords) {
+  const protection = new Protection(protectionList ?? []);
+
+  if (protectionList) {
     content = protection.addWordProtection(content);
   }
 

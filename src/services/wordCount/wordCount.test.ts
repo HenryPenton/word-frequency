@@ -141,11 +141,9 @@ describe("word count", () => {
       const wordToCount = "Lock & Co";
       const fullSentence = "Lock & Co";
       const protectionList = ["Lock & Co"];
-      const count = WordCount.singleWordCount(
-        fullSentence,
-        wordToCount,
-        protectionList
-      );
+      const count = WordCount.singleWordCount(fullSentence, wordToCount, {
+        protectionList,
+      });
       expect(count).toBe(1);
     });
 
@@ -171,7 +169,9 @@ describe("word count", () => {
 
     test("protected words are added to the map as is", () => {
       const fullSentence = "Lock & Co";
-      const map = WordCount.allWordCount(fullSentence, ["Lock & Co"]);
+      const map = WordCount.allWordCount(fullSentence, {
+        protectionList: ["Lock & Co"],
+      });
       const expectedCountMap = new Map<string, number>().set("Lock & Co", 1);
 
       expect(map).toEqual(expectedCountMap);
