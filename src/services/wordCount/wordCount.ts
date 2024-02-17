@@ -1,6 +1,9 @@
 import { Settings } from "../..";
 import { punctuationRemover } from "../../utils/punctuation/punctuation";
-import { getSentenceComponents } from "../../utils/sentenceComponents/sentenceComponents";
+import {
+  getSentenceComponents,
+  getUniqueSentenceComponents,
+} from "../../utils/sentenceComponents/sentenceComponents";
 
 /**
  * Count instances of a given word in a block of text.
@@ -34,9 +37,7 @@ export const allWordCount = (
   text: string,
   settings: Settings = {}
 ): Map<string, number> => {
-  const uniqueSentenceComponents = new Set(
-    getSentenceComponents(text, settings)
-  );
+  const uniqueSentenceComponents = getUniqueSentenceComponents(text, settings);
 
   const wordMap = new Map<string, number>();
 

@@ -1,4 +1,7 @@
-import { getSentenceComponents } from "./sentenceComponents";
+import {
+  getSentenceComponents,
+  getUniqueSentenceComponents,
+} from "./sentenceComponents";
 
 describe("sentence components", () => {
   test("splits sentence of one word", () => {
@@ -61,5 +64,15 @@ describe("sentence components", () => {
       expect(override).toHaveBeenCalledTimes(2);
       expect(components).toEqual(["Lock & Co"]);
     });
+  });
+});
+
+describe("unique sentence components", () => {
+  test("gets the unique components of the sentence", () => {
+    const sentenceComponents = getUniqueSentenceComponents(
+      "cat cat cat cat",
+      {}
+    );
+    expect(sentenceComponents).toEqual(new Set(["cat"]));
   });
 });

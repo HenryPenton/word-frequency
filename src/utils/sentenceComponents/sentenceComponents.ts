@@ -25,3 +25,10 @@ export const getSentenceComponents = (
 
   return unprotectedSentenceComponents.filter((component) => component !== "");
 };
+
+export const getUniqueSentenceComponents = (
+  text: string,
+  settings: Settings
+): Set<string> => {
+  return new Set(getSentenceComponents(text, settings));
+};
