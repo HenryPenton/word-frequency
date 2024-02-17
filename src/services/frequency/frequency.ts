@@ -7,8 +7,12 @@ import * as WordCount from "../wordCount/wordCount";
  * @param {string} text - The text to parse.
  * @param {string} word - The word to check the frequency of.
  */
-export const singleFrequencyCount = (text: string, word: string): number => {
-  const wordMap = WordCount.allWordCount(text);
+export const singleFrequencyCount = (
+  text: string,
+  word: string,
+  protectionList?: string[]
+): number => {
+  const wordMap = WordCount.allWordCount(text, protectionList);
   let total = 0;
   wordMap.forEach((wordCount) => (total += wordCount));
 
@@ -18,6 +22,7 @@ export const singleFrequencyCount = (text: string, word: string): number => {
     const frequency = wordCount / total;
     return Number(frequency.toFixed(4));
   }
+
   return 0;
 };
 
@@ -26,13 +31,18 @@ export const singleFrequencyCount = (text: string, word: string): number => {
  *
  * @param {string} text - The text to parse.
  */
-export const allFrequencyCount = (text: string): Map<string, number> => {
-  const sentenceComponents = new Set(getSentenceComponents(text));
+export const allFrequencyCount = (
+  text: string,
+  protectionList?: string[]
+): Map<string, number> => {
+  const sentenceComponents = new Set(
+    getSentenceComponents(text, protectionList)
+  );
 
   const frequencyMap = new Map<string, number>();
 
   sentenceComponents.forEach((key) => {
-    const single = singleFrequencyCount(text, key);
+    const single = singleFrequencyCount(text, key, protectionList);
 
     if (single) {
       frequencyMap.set(key, single);

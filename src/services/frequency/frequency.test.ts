@@ -17,10 +17,19 @@ describe("frequencies", () => {
     });
 
     test("a word that doesn't appear in the sentence has a frequency of 0%", () => {
-      const sentence = "what is the tim";
+      const sentence = "what is the time";
       const frequency = Frequency.singleFrequencyCount(sentence, "potatoes");
 
       expect(frequency).toBe(0);
+    });
+
+    test("protected word frequency is counted as is", () => {
+      const sentence = "Lock & Co is a hatters in london";
+      const frequency = Frequency.singleFrequencyCount(sentence, "Lock & Co", [
+        "Lock & Co",
+      ]);
+
+      expect(frequency).toBe(0.1667);
     });
 
     test("percentages are limited to four decimal places", () => {
@@ -62,6 +71,20 @@ describe("frequencies", () => {
         .set("me", 0.3333);
 
       expect(frequencyMap).toEqual(expectedFrequencyMap);
+    });
+
+    test("protected word frequency is counted as part of the map", () => {
+      const sentence = "Lock & Co is a hatters in london";
+      const frequency = Frequency.allFrequencyCount(sentence, ["Lock & Co"]);
+      const expectedFrequencyMap = new Map<string, number>()
+        .set("Lock & Co", 0.1667)
+        .set("is", 0.1667)
+        .set("a", 0.1667)
+        .set("hatters", 0.1667)
+        .set("in", 0.1667)
+        .set("london", 0.1667);
+
+      expect(frequency).toEqual(expectedFrequencyMap);
     });
   });
 
