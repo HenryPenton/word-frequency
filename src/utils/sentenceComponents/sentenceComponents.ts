@@ -13,7 +13,7 @@ export const getSentenceComponents = (
   );
   let content = text;
 
-  content = protection.addWordProtection(text);
+  content = protection.addWordProtection(content);
 
   const sentenceComponents = punctuationRemover(content, config).split(" ");
   const unprotectedSentenceComponents = [];
