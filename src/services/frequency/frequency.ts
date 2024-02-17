@@ -1,6 +1,6 @@
 import { Settings } from "../..";
-import { getSentenceComponents } from "../../utils/sentenceComponents/sentenceComponents";
-import * as WordCount from "../wordCount/wordCount";
+import { getUniqueSentenceComponents } from "../../utils/sentenceComponents/sentenceComponents";
+import { allWordCount } from "../wordCount/wordCount";
 
 /**
  * Find frequency of a given word in a block of text.
@@ -14,7 +14,7 @@ export const singleFrequencyCount = (
   word: string,
   settings: Settings = {}
 ): number => {
-  const wordMap = WordCount.allWordCount(text, settings);
+  const wordMap = allWordCount(text, settings);
   let total = 0;
   wordMap.forEach((wordCount) => (total += wordCount));
 
@@ -38,14 +38,18 @@ export const allFrequencyCount = (
   text: string,
   settings: Settings = {}
 ): Map<string, number> => {
-  const sentenceComponents = new Set(getSentenceComponents(text, settings));
+  const uniqueSentenceComponents = getUniqueSentenceComponents(text, settings);
 
   const frequencyMap = new Map<string, number>();
 
-  sentenceComponents.forEach((key) => {
-    const single = singleFrequencyCount(text, key, settings);
+  uniqueSentenceComponents.forEach((uniqueSentenceComponent) => {
+    const single = singleFrequencyCount(
+      text,
+      uniqueSentenceComponent,
+      settings
+    );
 
-    frequencyMap.set(key, single);
+    frequencyMap.set(uniqueSentenceComponent, single);
   });
 
   return frequencyMap;
