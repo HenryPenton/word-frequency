@@ -184,7 +184,7 @@ describe("punctuation", () => {
         protectionList: ["don't"],
         overrideUniqueAlphaNumericGenerator: override,
       });
-      
+
       expect(override).toHaveBeenCalled();
       expect(noPunctuationSentence).toBe("i really don't like cheese");
     });
