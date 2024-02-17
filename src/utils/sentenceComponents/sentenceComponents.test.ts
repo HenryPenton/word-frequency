@@ -19,6 +19,14 @@ describe("sentence components", () => {
     expect(sentenceComponents).toEqual(["the", "big", "brown", "fat", "cat"]);
   });
 
+  test("spaces are not returned in the components", () => {
+    const sentenceComponents = getSentenceComponents(
+      "the     big    brown     fat     cat",
+      {}
+    );
+    expect(sentenceComponents).toEqual(["the", "big", "brown", "fat", "cat"]);
+  });
+
   describe("word preservation", () => {
     test("a phrase can be protected from the sentence splitter", () => {
       const fullSentence = `Lock & Co`;

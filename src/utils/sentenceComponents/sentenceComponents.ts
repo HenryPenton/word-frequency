@@ -22,5 +22,6 @@ export const getSentenceComponents = (
       protection.removeWordProtection(sentenceComponent)
     );
   }
-  return unprotectedSentenceComponents;
+
+  return unprotectedSentenceComponents.filter((component) => component !== "");
 };

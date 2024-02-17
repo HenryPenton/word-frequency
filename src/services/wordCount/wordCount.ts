@@ -37,7 +37,6 @@ export const allWordCount = (
   const uniqueSentenceComponents = new Set(
     getSentenceComponents(text, settings)
   );
-  uniqueSentenceComponents.delete("");
 
   const wordMap = new Map<string, number>();
 
