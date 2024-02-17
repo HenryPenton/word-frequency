@@ -137,7 +137,7 @@ describe("punctuation", () => {
     expect(noPunctuationSentence).toBe("yes     no");
   });
 
-  describe("word preserver", () => {
+  describe("word preservation", () => {
     test("a single specified word is preserved from the punctuation remover", () => {
       const fullSentence = `I really don't like cheese`;
       const noPunctuationSentence = punctuationRemover(fullSentence, ["don't"]);
@@ -162,6 +162,14 @@ describe("punctuation", () => {
       expect(noPunctuationSentence).toBe(
         "i really can't and don't like cheese"
       );
+    });
+    test("phrase including punctuation is preserved from the punctuation remover", () => {
+      const fullSentence = `Lock & Co is a hat shop in london`;
+      const noPunctuationSentence = punctuationRemover(fullSentence, [
+        "Lock & Co",
+      ]);
+
+      expect(noPunctuationSentence).toBe("Lock & Co is a hat shop in london");
     });
   });
 });
