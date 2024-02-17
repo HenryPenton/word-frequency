@@ -21,9 +21,9 @@ export class Protection {
   addWordProtection = (text: string): string => {
     let protectedString = text;
     this.protectionMap.forEach((preservedWordRandomized, originalWord) => {
-      const myRegex = new RegExp(originalWord, "g");
+      const originalWordMatcher = new RegExp(originalWord, "g");
       protectedString = protectedString.replace(
-        myRegex,
+        originalWordMatcher,
         preservedWordRandomized
       );
     });
@@ -34,9 +34,12 @@ export class Protection {
   removeWordProtection = (text: string): string => {
     let unprotectedString = text;
     this.protectionMap.forEach((preservedWordRandomized, originalWord) => {
-      const myRegex = new RegExp(preservedWordRandomized, "g");
+      const protectedWordMatcher = new RegExp(preservedWordRandomized, "g");
 
-      unprotectedString = unprotectedString.replace(myRegex, originalWord);
+      unprotectedString = unprotectedString.replace(
+        protectedWordMatcher,
+        originalWord
+      );
     });
     return unprotectedString;
   };
