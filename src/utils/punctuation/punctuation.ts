@@ -20,12 +20,8 @@ export const punctuationRemover = (
     settings.overrideUniqueAlphaNumericGenerator
   );
 
-  if (protectionList) {
-    content = protection.addWordProtection(content);
-  }
-
+  content = protection.addWordProtection(content);
   content = removePunctuation(content);
-
   content = protection.removeWordProtection(content);
 
   return content;

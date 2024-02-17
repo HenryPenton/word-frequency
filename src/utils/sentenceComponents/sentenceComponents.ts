@@ -12,9 +12,9 @@ export const getSentenceComponents = (
     settings.overrideUniqueAlphaNumericGenerator
   );
   let content = text;
-  if (protectionList) {
-    content = protection.addWordProtection(text);
-  }
+
+  content = protection.addWordProtection(text);
+
   const sentenceComponents = punctuationRemover(content, settings).split(" ");
   const unprotectedSentenceComponents = [];
   for (const sentenceComponent of sentenceComponents) {
