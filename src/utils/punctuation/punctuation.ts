@@ -1,9 +1,4 @@
-import {
-  ProtectionMap,
-  buildProtectionMap,
-  addWordProtection,
-  removeWordProtection,
-} from "../protection/protection";
+import { Protection } from "../protection/protection";
 
 const removePunctuation = (text: string): string =>
   text
@@ -17,16 +12,15 @@ export const punctuationRemover = (
   preservedWords?: string[]
 ): string => {
   let content = text;
-  const preservationMap: ProtectionMap = new Map();
+  const protection = new Protection(preservedWords ?? []);
 
   if (preservedWords) {
-    buildProtectionMap(preservedWords, preservationMap);
-    content = addWordProtection(preservationMap, content);
+    content = protection.addWordProtection(content);
   }
 
   content = removePunctuation(content);
 
-  content = removeWordProtection(preservationMap, content);
+  content = protection.removeWordProtection(content);
 
   return content;
 };

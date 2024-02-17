@@ -1,20 +1,14 @@
-import {
-  ProtectionMap,
-  addWordProtection,
-  buildProtectionMap,
-  removeWordProtection,
-} from "../protection/protection";
+import { Protection } from "../protection/protection";
 import { punctuationRemover } from "../punctuation/punctuation";
 
 export const getSentenceComponents = (
   text: string,
   protectionList?: string[]
 ): string[] => {
-  const protectionMap: ProtectionMap = new Map();
-  let content = text
+  const protection = new Protection(protectionList ?? []);
+  let content = text;
   if (protectionList) {
-    buildProtectionMap(protectionList, protectionMap);
-    content=addWordProtection(protectionMap, text);
+    content = protection.addWordProtection(text);
   }
   const sentenceComponents = punctuationRemover(content, protectionList).split(
     " "
@@ -22,7 +16,7 @@ export const getSentenceComponents = (
   const unprotectedSentenceComponents = [];
   for (const sentenceComponent of sentenceComponents) {
     unprotectedSentenceComponents.push(
-      removeWordProtection(protectionMap, sentenceComponent)
+      protection.removeWordProtection(sentenceComponent)
     );
   }
   return unprotectedSentenceComponents;

@@ -1,38 +1,26 @@
-import {
-  ProtectionMap,
-  addWordProtection,
-  buildProtectionMap,
-  removeWordProtection,
-} from "./protection";
+import { Protection } from "./protection";
 
 describe("protection", () => {
-  test("can build a map between words and randomised strings", () => {
-    const preservationMap: ProtectionMap = new Map();
-    jest.spyOn(Math, "random").mockImplementation(() => 0.5);
-    buildProtectionMap(["word"], preservationMap);
+  test("protects words by replacing them with random strings", () => {
+    jest.spyOn(Math, "random").mockImplementation(() => 0.4);
 
-    expect(preservationMap.get("word")).toEqual("ssssssssss");
-  });
-
-  test("protects words by replacing them using the map", () => {
-    const preservationMap: ProtectionMap = new Map();
-    preservationMap.set("word", "abcdefghi");
-    const protectedText = addWordProtection(
-      preservationMap,
+    const preservation = new Protection(["word"]);
+    const protectedText = preservation.addWordProtection(
       "this sentence contains a word"
     );
 
-    expect(protectedText).toEqual("this sentence contains a abcdefghi");
+    expect(protectedText).toEqual("this sentence contains a oooooooooo");
   });
 
   test("unprotects words by replacing them using the map", () => {
-    const preservationMap: ProtectionMap = new Map();
-    preservationMap.set("word", "abcdefghi");
-    const protectedText = removeWordProtection(
-      preservationMap,
-      "this sentence contains a abcdefghi"
+    jest.spyOn(Math, "random").mockImplementation(() => 0.4);
+
+    const preservation = new Protection(["word"]);
+
+    const unprotectedText = preservation.removeWordProtection(
+      "this sentence contains a oooooooooo"
     );
 
-    expect(protectedText).toEqual("this sentence contains a word");
+    expect(unprotectedText).toEqual("this sentence contains a word");
   });
 });
