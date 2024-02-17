@@ -14,25 +14,53 @@ export const generateRandomStrings = (
   numberOfStrings: number,
   override?: () => string
 ): string[] => {
-  const randomStrings: string[] = [];
+  const randomStrings: Set<string> = new Set();
+  const hasOverride = !!override;
 
   for (let count = 0; count < numberOfStrings; count++) {
-    const randomValue = override ? override() : generateRandomString();
-    if (override && !isAlphaNumeric(randomValue)) {
-      throw new Error(
-        "The override generator provided generated a non alphanumeric string"
-      );
-    }
-    if (containsCaps(randomValue)) {
-      throw new Error(
-        "The override generator provided generated a string containing capital letters"
-      );
-    }
-    randomStrings.push(randomValue);
-  }
+    const randomValue = hasOverride ? override() : generateRandomString();
+    checkStringTypeErrors(hasOverride, randomValue);
 
-  return randomStrings;
+    randomStrings.add(randomValue);
+  }
+  checkStringDuplicateErrors(hasOverride, randomStrings, numberOfStrings);
+  return [...randomStrings];
 };
+
+const checkStringTypeErrors = (
+  hasOverride: boolean,
+  randomValue: string
+): void => {
+  if (hasOverride && !isAlphaNumeric(randomValue)) {
+    throw new Error(
+      "The override generator provided generated a non alphanumeric string"
+    );
+  }
+  if (containsCaps(randomValue)) {
+    throw new Error(
+      "The override generator provided generated a string containing capital letters"
+    );
+  }
+};
+
+const checkStringDuplicateErrors = (
+  hasOverride: boolean,
+  randomStrings: Set<string>,
+  numberOfStrings: number
+): void => {
+  const hasStringDuplicate = randomStrings.size < numberOfStrings;
+  if (hasStringDuplicate && hasOverride) {
+    throw new Error(
+      "It looks like the override generator you provided generated the same 'random' string twice!"
+    );
+  }
+  if (hasStringDuplicate && !hasOverride) {
+    throw new Error(
+      "It looks like Math.random generated the same 'random' string twice! Sorry about that, you may wish to provide an override generator."
+    );
+  }
+};
+
 const isAlphaNumeric = (string: string): boolean => {
   return /^[a-zA-Z0-9]+$/.test(string);
 };
