@@ -138,7 +138,7 @@ describe("punctuation", () => {
   });
 
   describe("word preservation", () => {
-    test("a single specified word is preserved from the punctuation remover", () => {
+    test("a single specified word is protected from the punctuation remover", () => {
       const fullSentence = `I really don't like cheese`;
       const noPunctuationSentence = punctuationRemover(fullSentence, {
         protectionList: ["don't"],
@@ -147,7 +147,7 @@ describe("punctuation", () => {
       expect(noPunctuationSentence).toBe("i really don't like cheese");
     });
 
-    test("multiple instances of a specified word are preserved from the punctuation remover", () => {
+    test("multiple instances of a specified word are protected from the punctuation remover", () => {
       const fullSentence = `I don't really don't like cheese`;
       const noPunctuationSentence = punctuationRemover(fullSentence, {
         protectionList: ["don't"],
@@ -156,7 +156,7 @@ describe("punctuation", () => {
       expect(noPunctuationSentence).toBe("i don't really don't like cheese");
     });
 
-    test("single instances of multiple words are preserved from the punctuation remover", () => {
+    test("single instances of multiple words are protected from the punctuation remover", () => {
       const fullSentence = `I really can't and don't like cheese`;
       const noPunctuationSentence = punctuationRemover(fullSentence, {
         protectionList: ["don't", "can't"],
@@ -166,7 +166,7 @@ describe("punctuation", () => {
         "i really can't and don't like cheese"
       );
     });
-    test("phrase including punctuation is preserved from the punctuation remover", () => {
+    test("phrase including punctuation is protected from the punctuation remover", () => {
       const fullSentence = `Lock & Co is a hat shop in london`;
       const noPunctuationSentence = punctuationRemover(fullSentence, {
         protectionList: ["Lock & Co"],
@@ -177,7 +177,7 @@ describe("punctuation", () => {
   });
 
   describe("word preservation with override string generator", () => {
-    test("a single specified word is preserved from the punctuation remover", () => {
+    test("a single specified word is protected from the punctuation remover", () => {
       const override = jest.fn(() => "aaa");
       const fullSentence = `I really don't like cheese`;
       const noPunctuationSentence = punctuationRemover(fullSentence, {

@@ -6,20 +6,20 @@ export class Protection {
   private protectionMap: ProtectionMap;
 
   constructor(
-    preservedWords: string[],
+    protectedWords: string[],
     readonly overrideGenerator?: () => string
   ) {
-    this.protectionMap = this.buildProtectionMap(preservedWords);
+    this.protectionMap = this.buildProtectionMap(protectedWords);
   }
 
-  buildProtectionMap = (preservedWords: string[]): ProtectionMap => {
+  buildProtectionMap = (protectedWords: string[]): ProtectionMap => {
     const protectionMap: ProtectionMap = new Map();
     const randomStrings = generateRandomStrings(
-      preservedWords.length,
+      protectedWords.length,
       this.overrideGenerator
     );
-    preservedWords.forEach((preservedWord, index) => {
-      protectionMap.set(preservedWord, `${randomStrings[index]}`);
+    protectedWords.forEach((protectedWord, index) => {
+      protectionMap.set(protectedWord, `${randomStrings[index]}`);
     });
 
     return protectionMap;
@@ -27,11 +27,11 @@ export class Protection {
 
   addWordProtection = (text: string): string => {
     let protectedString = text;
-    this.protectionMap.forEach((preservedWordRandomized, originalWord) => {
+    this.protectionMap.forEach((protectedWordRandomized, originalWord) => {
       const originalWordMatcher = new RegExp(originalWord, "g");
       protectedString = protectedString.replace(
         originalWordMatcher,
-        preservedWordRandomized
+        protectedWordRandomized
       );
     });
 
@@ -40,8 +40,8 @@ export class Protection {
 
   removeWordProtection = (text: string): string => {
     let unprotectedString = text;
-    this.protectionMap.forEach((preservedWordRandomized, originalWord) => {
-      const protectedWordMatcher = new RegExp(preservedWordRandomized, "g");
+    this.protectionMap.forEach((protectedRandomisedWord, originalWord) => {
+      const protectedWordMatcher = new RegExp(protectedRandomisedWord, "g");
 
       unprotectedString = unprotectedString.replace(
         protectedWordMatcher,

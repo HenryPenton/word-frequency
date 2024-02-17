@@ -50,7 +50,7 @@ describe("sentence components", () => {
   });
 
   describe("word preservation with override string generator", () => {
-    test("a single specified word is preserved from the punctuation remover", () => {
+    test("a single specified word is protected from the punctuation remover", () => {
       const override = jest
         .fn()
         .mockImplementationOnce(() => "aaa")
