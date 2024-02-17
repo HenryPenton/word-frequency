@@ -136,4 +136,32 @@ describe("punctuation", () => {
 
     expect(noPunctuationSentence).toBe("yes     no");
   });
+
+  describe("word preserver", () => {
+    test("a single specified word is preserved from the punctuation remover", () => {
+      const fullSentence = `I really don't like cheese`;
+      const noPunctuationSentence = punctuationRemover(fullSentence, ["don't"]);
+
+      expect(noPunctuationSentence).toBe("i really don't like cheese");
+    });
+
+    test("multiple instances of a specified word are preserved from the punctuation remover", () => {
+      const fullSentence = `I don't really don't like cheese`;
+      const noPunctuationSentence = punctuationRemover(fullSentence, ["don't"]);
+
+      expect(noPunctuationSentence).toBe("i don't really don't like cheese");
+    });
+
+    test("single instances of multiple words are preserved from the punctuation remover", () => {
+      const fullSentence = `I really can't and don't like cheese`;
+      const noPunctuationSentence = punctuationRemover(fullSentence, [
+        "don't",
+        "can't",
+      ]);
+
+      expect(noPunctuationSentence).toBe(
+        "i really can't and don't like cheese"
+      );
+    });
+  });
 });
