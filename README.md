@@ -63,7 +63,15 @@ singleFrequencyCount("Lock & Co is a hatters", "Lock & Co", {
 allFrequencyCount("Lock & Co is a hatters", { protectionList: ["Lock & Co"] }); // => Map{ 'Lock & Co' => 0.25; 'is' => 0.25; 'a' => 0.25; 'hatters' => 0.25; };
 ```
 
-The way these functions are protected is by first replacing them with a lowercase ten character alphanumeric string, then replacing them after the work is done. To keep this library zero-dependency, the alphanumeric strings have been generated using Math.random. This means there is a miniscule chance that two non-unique strings get generated. If you wish to counter this, you may provide a random string generator in the settings, the only constraints are that the string is alphanumeric and lower case. For instance this could be a lowercase uuid with the hyphens removed.
+The way these phrases or words are protected is by first replacing them with a lowercase ten character alphanumeric string, then replacing that string with the original word or phrase after the work is done.
+
+To keep this library zero-dependency, the alphanumeric strings have been generated using Math.random. This means there is a miniscule chance that two non-unique strings get generated.
+
+If you wish to counter this, you may provide a random string generator in the settings, the only constraints are that the string is alphanumeric and lower case. For instance this could be a lowercase uuid with the hyphens removed.
+
+```javascript
+() => uuidv4().replace(/-/g, "");
+```
 
 ```javascript
 import { singleWordCount, allWordCount } from "word-frequency-counter";
