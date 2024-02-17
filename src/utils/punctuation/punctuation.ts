@@ -9,10 +9,10 @@ const removePunctuation = (text: string): string =>
 
 export const punctuationRemover = (
   text: string,
-  preservedWords?: string[]
+  preservedWords: string[] = []
 ): string => {
   let content = text;
-  const protection = new Protection(preservedWords ?? []);
+  const protection = new Protection(preservedWords);
 
   if (preservedWords) {
     content = protection.addWordProtection(content);

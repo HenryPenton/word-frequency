@@ -3,14 +3,14 @@ import { punctuationRemover } from "../punctuation/punctuation";
 
 export const getSentenceComponents = (
   text: string,
-  protectionList?: string[]
+  preservedWords: string[] = []
 ): string[] => {
-  const protection = new Protection(protectionList ?? []);
+  const protection = new Protection(preservedWords);
   let content = text;
-  if (protectionList) {
+  if (preservedWords) {
     content = protection.addWordProtection(text);
   }
-  const sentenceComponents = punctuationRemover(content, protectionList).split(
+  const sentenceComponents = punctuationRemover(content, preservedWords).split(
     " "
   );
   const unprotectedSentenceComponents = [];
