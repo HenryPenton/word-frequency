@@ -137,6 +137,18 @@ describe("word count", () => {
       expect(count).toBe(2);
     });
 
+    test("protected words are counted as is", () => {
+      const wordToCount = "Lock & Co";
+      const fullSentence = "Lock & Co";
+      const protectionList = ["Lock & Co"];
+      const count = WordCount.singleWordCount(
+        fullSentence,
+        wordToCount,
+        protectionList
+      );
+      expect(count).toBe(1);
+    });
+
     test("punctuated words aren't added to the map", () => {
       const fullSentence = "who the who?";
       const map = WordCount.allWordCount(fullSentence);
@@ -153,6 +165,14 @@ describe("word count", () => {
       const expectedCountMap = new Map<string, number>()
         .set("what", 2)
         .set("the", 1);
+
+      expect(map).toEqual(expectedCountMap);
+    });
+
+    test("protected words are added to the map as is", () => {
+      const fullSentence = "Lock & Co";
+      const map = WordCount.allWordCount(fullSentence, ["Lock & Co"]);
+      const expectedCountMap = new Map<string, number>().set("Lock & Co", 1);
 
       expect(map).toEqual(expectedCountMap);
     });
