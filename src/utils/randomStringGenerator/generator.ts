@@ -13,7 +13,7 @@ const generateRandomString = (): string => {
 export const generateRandomStrings = (
   numberOfStrings: number,
   override?: () => string
-): string[] => {
+): Set<string> => {
   const randomStrings: Set<string> = new Set();
   const hasOverride = !!override;
 
@@ -24,7 +24,7 @@ export const generateRandomStrings = (
     randomStrings.add(randomValue);
   }
   checkStringDuplicateErrors(hasOverride, randomStrings, numberOfStrings);
-  return [...randomStrings];
+  return randomStrings;
 };
 
 const checkStringTypeErrors = (

@@ -17,9 +17,10 @@ export class Protection {
     const randomStrings = generateRandomStrings(
       protectedWords.length,
       this.overrideGenerator
-    );
-    protectedWords.forEach((protectedWord, index) => {
-      protectionMap.set(protectedWord, `${randomStrings[index]}`);
+    ).values();
+
+    protectedWords.forEach((protectedWord) => {
+      protectionMap.set(protectedWord, `${randomStrings.next().value}`);
     });
 
     return protectionMap;
