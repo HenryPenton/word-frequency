@@ -7,7 +7,10 @@ export const getSentenceComponents = (
   settings: Settings
 ): string[] => {
   const { protectionList } = settings;
-  const protection = new Protection(protectionList ?? []);
+  const protection = new Protection(
+    protectionList ?? [],
+    settings.overrideUniqueAlphaNumericGenerator
+  );
   let content = text;
   if (protectionList) {
     content = protection.addWordProtection(text);

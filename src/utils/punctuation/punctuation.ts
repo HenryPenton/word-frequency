@@ -15,7 +15,10 @@ export const punctuationRemover = (
   let content = text;
   const { protectionList } = settings;
 
-  const protection = new Protection(protectionList ?? []);
+  const protection = new Protection(
+    protectionList ?? [],
+    settings.overrideUniqueAlphaNumericGenerator
+  );
 
   if (protectionList) {
     content = protection.addWordProtection(content);

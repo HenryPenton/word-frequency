@@ -37,4 +37,21 @@ describe("sentence components", () => {
       expect(components).toEqual(["Lock & Co", "abc:xyz"]);
     });
   });
+
+  describe("word preservation with override string generator", () => {
+    test("a single specified word is preserved from the punctuation remover", () => {
+      const override = jest
+        .fn()
+        .mockImplementationOnce(() => "aaa")
+        .mockImplementationOnce(() => "bbb");
+      const fullSentence = `Lock & Co`;
+      const components = getSentenceComponents(fullSentence, {
+        protectionList: ["Lock & Co"],
+        overrideUniqueAlphaNumericGenerator: override,
+      });
+
+      expect(override).toHaveBeenCalledTimes(2);
+      expect(components).toEqual(["Lock & Co"]);
+    });
+  });
 });
