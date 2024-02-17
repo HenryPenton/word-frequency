@@ -1,6 +1,7 @@
 import { generateRandomStrings } from "../randomStringGenerator/generator";
 
-export type ProtectionMap = Map<string, string>;
+type ProtectionMap = Map<string, string>;
+
 export class Protection {
   private protectionMap: ProtectionMap;
 
