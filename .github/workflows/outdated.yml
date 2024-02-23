@@ -22,7 +22,8 @@ jobs:
           version: latest
 
       - run: pnpm i
-      - run: pnpm outdated --format json > outdated
+      - run: echo **WORD FREQUENCY\n\n** > outdated
+      - run: pnpm outdated --format json >> outdated
       - name: send telegram message on push
         if: always()
         uses: appleboy/telegram-action@master
