@@ -2,7 +2,7 @@ name: Dependency check
 
 on:
   schedule:
-    - cron: "20 12 * * 5"
+    - cron: "40 7 * * 0"
 
 jobs:
   outdated:
