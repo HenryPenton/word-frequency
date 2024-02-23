@@ -1,6 +1,8 @@
 name: Dependency check
 
 on:
+  push:
+    branches: [main, feature/*]
   schedule:
     - cron: "5 4 * * 0"
 
