@@ -22,11 +22,11 @@ jobs:
           version: latest
 
       - run: pnpm i
-      - run: pnpm outdated
+      - run: pnpm outdated > x
       - name: send telegram message on push
         if: always()
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ${pnpm outdated}
+          message_file: x
