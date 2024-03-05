@@ -5,6 +5,10 @@ describe("random strings", () => {
     const randomStrings = generateRandomStrings(1);
     expect(randomStrings.size).toBe(1);
   });
+  test("string is 10 chars long", () => {
+    const randomStrings = generateRandomStrings(1);
+    expect(randomStrings.values().next().value).toHaveLength(10);
+  });
   test("generates two random strings", () => {
     const randomStrings = generateRandomStrings(2);
     expect(randomStrings.size).toBe(2);
