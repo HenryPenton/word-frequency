@@ -12,7 +12,8 @@
     "prepare": "npm run build",
     "prepublishOnly": "npm test",
     "test": "jest",
-    "version": "git add -A src"
+    "version": "git add -A src",
+    "prettier": "prettier --write ./src/**/*.ts"
   },
   "files": [
     "lib/**/*"
