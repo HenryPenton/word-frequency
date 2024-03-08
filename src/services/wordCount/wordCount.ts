@@ -1,9 +1,9 @@
-import { Config, defaultConfig } from "../../config";
-import { punctuationRemover } from "../../utils/punctuation/punctuation";
+import { Config, defaultConfig } from '../../config';
+import { punctuationRemover } from '../../utils/punctuation/punctuation';
 import {
   getSentenceComponents,
   getUniqueSentenceComponents,
-} from "../../utils/sentenceComponents/sentenceComponents";
+} from '../../utils/sentenceComponents/sentenceComponents';
 
 type WordMap = Map<string, number>;
 /**
@@ -16,13 +16,13 @@ type WordMap = Map<string, number>;
 export const singleWordCount = (
   text: string,
   word: string,
-  config: Config = defaultConfig
+  config: Config = defaultConfig,
 ): number => {
   const punctuationRemovedSearch = punctuationRemover(word, config);
   const sentenceComponents = getSentenceComponents(text, config);
 
   const totalOccurrences = sentenceComponents.filter(
-    (word) => word === punctuationRemovedSearch
+    (word) => word === punctuationRemovedSearch,
   );
 
   return totalOccurrences.length;
@@ -36,7 +36,7 @@ export const singleWordCount = (
  */
 export const allWordCount = (
   text: string,
-  config: Config = defaultConfig
+  config: Config = defaultConfig,
 ): WordMap => {
   const uniqueSentenceComponents = getUniqueSentenceComponents(text, config);
 

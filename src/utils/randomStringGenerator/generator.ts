@@ -3,11 +3,11 @@ import {
   OverrideGeneratorAlphanumericError,
   OverrideGeneratorCapitalError,
   OverrideGeneratorDuplicateError,
-} from "../../errors/generatorErrors/generatorErrors";
+} from '../../errors/generatorErrors/generatorErrors';
 
 const generateRandomString = (): string => {
-  const alphanumeric = "abcdefghijklmnopqrstuvwxyz0123456789";
-  let result = "";
+  const alphanumeric = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
 
   for (let i = 0; i < 10; i++) {
     const randomIndex = Math.floor(Math.random() * alphanumeric.length);
@@ -19,7 +19,7 @@ const generateRandomString = (): string => {
 
 export const generateRandomStrings = (
   numberOfStrings: number,
-  override?: () => string
+  override?: () => string,
 ): Set<string> => {
   const randomStrings: Set<string> = new Set();
   const hasOverride = !!override;
@@ -36,16 +36,16 @@ export const generateRandomStrings = (
 
 const checkStringTypeErrors = (
   hasOverride: boolean,
-  randomValue: string
+  randomValue: string,
 ): void => {
   if (hasOverride && !isAlphaNumeric(randomValue)) {
     throw new OverrideGeneratorAlphanumericError(
-      "The override generator provided generated a non alphanumeric string"
+      'The override generator provided generated a non alphanumeric string',
     );
   }
   if (containsCaps(randomValue)) {
     throw new OverrideGeneratorCapitalError(
-      "The override generator provided generated a string containing capital letters"
+      'The override generator provided generated a string containing capital letters',
     );
   }
 };
@@ -53,17 +53,17 @@ const checkStringTypeErrors = (
 const checkStringDuplicateErrors = (
   hasOverride: boolean,
   randomStrings: Set<string>,
-  numberOfStrings: number
+  numberOfStrings: number,
 ): void => {
   const hasStringDuplicate = randomStrings.size < numberOfStrings;
   if (hasStringDuplicate && hasOverride) {
     throw new OverrideGeneratorDuplicateError(
-      "It looks like the override generator you provided generated the same 'random' string twice!"
+      "It looks like the override generator you provided generated the same 'random' string twice!",
     );
   }
   if (hasStringDuplicate && !hasOverride) {
     throw new MathRandomGeneratorDuplicateError(
-      "It looks like Math.random generated the same 'random' string twice! Sorry about that, you may wish to provide an override generator."
+      "It looks like Math.random generated the same 'random' string twice! Sorry about that, you may wish to provide an override generator.",
     );
   }
 };

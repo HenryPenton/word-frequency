@@ -1,12 +1,12 @@
-import { Config } from "../../config";
-import { Protection } from "../protection/protection";
+import { Config } from '../../config';
+import { Protection } from '../protection/protection';
 
 const removePunctuation = (text: string): string =>
   text
     .toLowerCase()
-    .replace(/\//g, " ")
-    .replace(/[\r\n]+/gm, " ")
-    .replace(/[^\w\s]/g, "");
+    .replace(/\//g, ' ')
+    .replace(/[\r\n]+/gm, ' ')
+    .replace(/[^\w\s]/g, '');
 
 export const punctuationRemover = (text: string, config: Config): string => {
   let content = text;
@@ -14,7 +14,7 @@ export const punctuationRemover = (text: string, config: Config): string => {
 
   const protection = new Protection(
     protectionList,
-    config.overrideUniqueAlphaNumericGenerator
+    config.overrideUniqueAlphaNumericGenerator,
   );
 
   content = protection.addWordProtection(content);

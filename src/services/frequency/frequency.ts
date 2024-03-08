@@ -1,6 +1,6 @@
-import { Config, defaultConfig } from "../../config";
-import { getUniqueSentenceComponents } from "../../utils/sentenceComponents/sentenceComponents";
-import { allWordCount } from "../wordCount/wordCount";
+import { Config, defaultConfig } from '../../config';
+import { getUniqueSentenceComponents } from '../../utils/sentenceComponents/sentenceComponents';
+import { allWordCount } from '../wordCount/wordCount';
 
 type FrequencyMap = Map<string, number>;
 
@@ -14,7 +14,7 @@ type FrequencyMap = Map<string, number>;
 export const singleFrequencyCount = (
   text: string,
   word: string,
-  config: Config = defaultConfig
+  config: Config = defaultConfig,
 ): number => {
   const wordMap = allWordCount(text, config);
   let total = 0;
@@ -38,7 +38,7 @@ export const singleFrequencyCount = (
  */
 export const allFrequencyCount = (
   text: string,
-  config: Config = defaultConfig
+  config: Config = defaultConfig,
 ): FrequencyMap => {
   const uniqueSentenceComponents = getUniqueSentenceComponents(text, config);
 
