@@ -29,8 +29,15 @@ describe('random strings', () => {
   });
 
   test('should throw an error if the override generator generates something non alpha numeric', () => {
-    const override: () => string = () => ';aaaaa12345;';
-    expect(() => generateRandomStrings(2, override)).toThrow(
+    const override: () => string = () => ';aaaa!a12345;';
+    expect(() => generateRandomStrings(1, override)).toThrow(
+      'The override generator provided generated a non alphanumeric string',
+    );
+  });
+
+  test('should throw an error if the override generator generates something with a non numeric character in the middle', () => {
+    const override: () => string = () => 'aaaa!a12345';
+    expect(() => generateRandomStrings(1, override)).toThrow(
       'The override generator provided generated a non alphanumeric string',
     );
   });

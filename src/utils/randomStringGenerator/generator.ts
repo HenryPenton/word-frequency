@@ -66,7 +66,7 @@ const checkStringDuplicateErrors = (
 };
 
 const isAlphaNumeric = (string: string): boolean => {
-  return /[a-zA-Z0-9]+$/.test(string);
+  return /^[a-zA-Z0-9]+$/.test(string);
 };
 
 const containsCaps = (string: string): boolean => {
