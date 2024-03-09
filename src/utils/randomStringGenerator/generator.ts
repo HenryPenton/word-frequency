@@ -26,7 +26,7 @@ export const generateRandomStrings = (
 
   for (let count = 0; count < numberOfStrings; count++) {
     const randomValue = hasOverride ? override() : generateRandomString();
-    if (hasOverride) checkStringTypeErrors(randomValue);
+    checkStringTypeErrors(randomValue);
 
     randomStrings.add(randomValue);
   }
