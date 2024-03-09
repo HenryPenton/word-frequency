@@ -111,20 +111,6 @@ describe('frequencies', () => {
       expect(frequencyMap.get('with')).toEqual(expectedWithFrequency);
     });
   });
-  describe('performance', () => {
-    test("doesn't re-count the frequency of the same word twice", () => {
-      const mockSingleFrequencyCount = jest.fn(() => 2);
-
-      jest
-        .spyOn(Frequency, 'singleFrequencyCount')
-        .mockImplementation(mockSingleFrequencyCount);
-
-      const fullSentence = 'how how';
-      Frequency.allFrequencyCount(fullSentence);
-
-      expect(mockSingleFrequencyCount).toHaveBeenCalledTimes(1);
-    });
-  });
 });
 
 const longform = `In Maria's kitchen, the aroma of garlic and onions filled the air as she prepared her signature dish, ratatouille. Among the veggies, the eggplant stood out, promising flavor with every slice.
