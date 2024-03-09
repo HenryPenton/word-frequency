@@ -1,4 +1,4 @@
-import { generateRandomStrings } from '../randomStringGenerator/generator';
+import { generateRandomStrings } from "../randomStringGenerator/generator";
 
 type ProtectionMap = Map<string, string>;
 
@@ -29,7 +29,7 @@ export class Protection {
   addWordProtection = (text: string): string => {
     let protectedString = text;
     this.protectionMap.forEach((protectedWordRandomized, originalWord) => {
-      const originalWordMatcher = new RegExp(originalWord, 'g');
+      const originalWordMatcher = new RegExp(originalWord, "g");
       protectedString = protectedString.replace(
         originalWordMatcher,
         protectedWordRandomized,
@@ -42,7 +42,7 @@ export class Protection {
   removeWordProtection = (text: string): string => {
     let unprotectedString = text;
     this.protectionMap.forEach((protectedRandomisedWord, originalWord) => {
-      const protectedWordMatcher = new RegExp(protectedRandomisedWord, 'g');
+      const protectedWordMatcher = new RegExp(protectedRandomisedWord, "g");
 
       unprotectedString = unprotectedString.replace(
         protectedWordMatcher,

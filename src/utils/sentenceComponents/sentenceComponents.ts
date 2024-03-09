@@ -1,6 +1,6 @@
-import { Config } from '../../config';
-import { Protection } from '../protection/protection';
-import { punctuationRemover } from '../punctuation/punctuation';
+import { Config } from "../../config";
+import { Protection } from "../protection/protection";
+import { punctuationRemover } from "../punctuation/punctuation";
 
 export const getSentenceComponents = (
   text: string,
@@ -15,7 +15,7 @@ export const getSentenceComponents = (
 
   content = protection.addWordProtection(content);
 
-  const sentenceComponents = punctuationRemover(content, config).split(' ');
+  const sentenceComponents = punctuationRemover(content, config).split(" ");
   const unprotectedSentenceComponents = [];
   for (const sentenceComponent of sentenceComponents) {
     unprotectedSentenceComponents.push(
@@ -23,7 +23,7 @@ export const getSentenceComponents = (
     );
   }
 
-  return unprotectedSentenceComponents.filter((component) => component !== '');
+  return unprotectedSentenceComponents.filter((component) => component !== "");
 };
 
 export const getUniqueSentenceComponents = (

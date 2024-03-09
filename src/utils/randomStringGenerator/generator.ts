@@ -3,11 +3,11 @@ import {
   OverrideGeneratorAlphanumericError,
   OverrideGeneratorCapitalError,
   OverrideGeneratorDuplicateError,
-} from '../../errors/generatorErrors/generatorErrors';
+} from "../../errors/generatorErrors/generatorErrors";
 
 const generateRandomString = (): string => {
-  const alphanumeric = 'abcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
+  const alphanumeric = "abcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
 
   for (let i = 0; i < 10; i++) {
     const randomIndex = Math.floor(Math.random() * alphanumeric.length);
@@ -37,12 +37,12 @@ export const generateRandomStrings = (
 const checkStringTypeErrors = (randomValue: string): void => {
   if (!isAlphaNumeric(randomValue)) {
     throw new OverrideGeneratorAlphanumericError(
-      'The override generator provided generated a non alphanumeric string',
+      "The override generator provided generated a non alphanumeric string",
     );
   }
   if (containsCaps(randomValue)) {
     throw new OverrideGeneratorCapitalError(
-      'The override generator provided generated a string containing capital letters',
+      "The override generator provided generated a string containing capital letters",
     );
   }
 };
