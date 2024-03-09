@@ -199,13 +199,13 @@ describe('punctuation', () => {
   });
 
   test('multiple new lines are removed from the sentence', () => {
-    const fullSentence = `yes \r \n \r \n no`;
+    const fullSentence = `yes \r \n random words in the middle \r \n no`;
     const noPunctuationSentence = punctuationRemover(
       fullSentence,
       defaultConfig,
     );
 
-    expect(noPunctuationSentence).toBe('yes         no');
+    expect(noPunctuationSentence).toBe('yes     random words in the middle     no');
   });
 
   describe('word preservation', () => {

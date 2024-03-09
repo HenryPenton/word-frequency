@@ -5,7 +5,7 @@ const removePunctuation = (text: string): string =>
   text
     .toLowerCase()
     .replace(/\//g, ' ')
-    .replace(/[\r\n]+/gm, ' ')
+    .replace(/[\r\n]/gm, ' ')
     .replace(/[^\w\s]/g, '');
 
 export const punctuationRemover = (text: string, config: Config): string => {
