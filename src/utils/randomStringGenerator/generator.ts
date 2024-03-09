@@ -38,15 +38,17 @@ const checkStringTypeErrors = (
   hasOverride: boolean,
   randomValue: string,
 ): void => {
-  if (hasOverride && !isAlphaNumeric(randomValue)) {
-    throw new OverrideGeneratorAlphanumericError(
-      'The override generator provided generated a non alphanumeric string',
-    );
-  }
-  if (containsCaps(randomValue)) {
-    throw new OverrideGeneratorCapitalError(
-      'The override generator provided generated a string containing capital letters',
-    );
+  if (hasOverride) {
+    if (!isAlphaNumeric(randomValue)) {
+      throw new OverrideGeneratorAlphanumericError(
+        'The override generator provided generated a non alphanumeric string',
+      );
+    }
+    if (containsCaps(randomValue)) {
+      throw new OverrideGeneratorCapitalError(
+        'The override generator provided generated a string containing capital letters',
+      );
+    }
   }
 };
 
