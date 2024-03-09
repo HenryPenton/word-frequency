@@ -29,7 +29,7 @@ describe('random strings', () => {
   });
 
   test('should throw an error if the override generator generates something non alpha numeric', () => {
-    const override: () => string = () => 'aaaaa12345;';
+    const override: () => string = () => ';aaaaa12345;';
     expect(() => generateRandomStrings(2, override)).toThrow(
       'The override generator provided generated a non alphanumeric string',
     );
