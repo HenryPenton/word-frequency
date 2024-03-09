@@ -26,7 +26,7 @@ export const generateRandomStrings = (
 
   for (let count = 0; count < numberOfStrings; count++) {
     const randomValue = hasOverride ? override() : generateRandomString();
-    checkStringTypeErrors(hasOverride, randomValue);
+    if (hasOverride) checkStringTypeErrors(randomValue);
 
     randomStrings.add(randomValue);
   }
@@ -34,21 +34,16 @@ export const generateRandomStrings = (
   return randomStrings;
 };
 
-const checkStringTypeErrors = (
-  hasOverride: boolean,
-  randomValue: string,
-): void => {
-  if (hasOverride) {
-    if (!isAlphaNumeric(randomValue)) {
-      throw new OverrideGeneratorAlphanumericError(
-        'The override generator provided generated a non alphanumeric string',
-      );
-    }
-    if (containsCaps(randomValue)) {
-      throw new OverrideGeneratorCapitalError(
-        'The override generator provided generated a string containing capital letters',
-      );
-    }
+const checkStringTypeErrors = (randomValue: string): void => {
+  if (!isAlphaNumeric(randomValue)) {
+    throw new OverrideGeneratorAlphanumericError(
+      'The override generator provided generated a non alphanumeric string',
+    );
+  }
+  if (containsCaps(randomValue)) {
+    throw new OverrideGeneratorCapitalError(
+      'The override generator provided generated a string containing capital letters',
+    );
   }
 };
 
