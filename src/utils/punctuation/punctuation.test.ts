@@ -188,7 +188,7 @@ describe('punctuation', () => {
     expect(noPunctuationSentence).toBe('yes no');
   });
 
-  test('new lines are removed from the sentence', () => {
+  test('new line is removed from the sentence', () => {
     const fullSentence = `yes \r \n no`;
     const noPunctuationSentence = punctuationRemover(
       fullSentence,
@@ -196,6 +196,16 @@ describe('punctuation', () => {
     );
 
     expect(noPunctuationSentence).toBe('yes     no');
+  });
+
+  test('multiple new lines are removed from the sentence', () => {
+    const fullSentence = `yes \r \n \r \n no`;
+    const noPunctuationSentence = punctuationRemover(
+      fullSentence,
+      defaultConfig,
+    );
+
+    expect(noPunctuationSentence).toBe('yes         no');
   });
 
   describe('word preservation', () => {
