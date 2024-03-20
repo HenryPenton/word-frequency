@@ -1,15 +1,15 @@
-name: Publish to NPM
+name: Test and build
 
 on:
   push:
-    tags:
-      - "v*"
-  release:
-    types: [published]
+    branches: [main, feature/*]
+  pull_request:
+    branches: [main]
 
 jobs:
-  publish-npm:
+  build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -22,9 +22,5 @@ jobs:
         with:
           version: latest
 
-      - run: git fetch
-      - run: git checkout main
       - run: pnpm i
-      - run: pnpm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: pnpm mutate
