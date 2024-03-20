@@ -1,4 +1,4 @@
-  name: Dependency check
+name: Dependency check
 
 on:
   schedule:
